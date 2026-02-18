@@ -1,0 +1,75 @@
+<!-- Problem 1
+Assessment Goal: Check ability to apply styling and understand selectors and box model.
+Hands-on Tasks:
+	•	Create an external CSS file and link it to HTML
+	•	Apply different text styles to headings and paragraphs
+	•	Add background color and borders to a section
+	•	Demonstrate margin and padding on a div
+	•	Style the form created on Day 2
+Expected Outcome: A visually styled webpage using external CSS and proper selectors. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS Styled Webpage</title>
+    <link rel="stylesheet" href="Problem1.css">
+</head>
+
+<body>
+    <header>
+        <h1>Upgrad Training Portal</h1>
+        <p align ="center">Welcome to the .NET Full Stack Developer Program</p>
+    </header>
+    <section class="about">
+        <h2>About This Program</h2>
+        <p>
+            This training program helps students learn .NET Full Stack Development.
+            It includes HTML, CSS, JavaScript, SQL, .NET  backend technologies.
+        </p>
+    </section>
+
+    <!-- Box model demo -->
+    <div class="box">
+        This block demonstrates box model .
+    </div>
+
+    <!-- Form From Yesterday -->
+    <section class="form">
+        <h2>Registration Form</h2>
+
+        <form action="Register.php"  method="POST"  autocomplete="off">
+        <fieldset>
+            <legend>User Login</legend>
+        <label>User Name : </label>
+        <input  type="text"  id="u1"  name="u1" autofocus  placeholder="Enter user name"  required/>
+        <br/><br/>
+        <label>Password : </label>
+        <input  type="password"  id="psd"  name="psd"   placeholder="Enter password" required/>
+        <br/><br/>
+        <label>Gmail : </label>
+        <input  type="email"  id="u2"  name="u2"   placeholder="Enter password" required/>
+        <br/><br/>
+        <label>Gender : </label>
+        <input  type="radio"  id="r1"  name="r1"  value="Male" required />
+        <label>Male</label>
+        <input  type="radio"  id="r2"  name="r1"  value="Female" />
+        <label>Female</label>
+        <br/><br/>
+        <label>Courses :</label>
+        <select id="s1" name="s1" required>
+            <option>CSE</option>
+            <option selected>EEE</option>
+            <option>BCA</option>
+            <option>MCA</option>
+            <option>Others</option>
+        </select>
+        <br/><br/>
+        <input type="submit" value="Login"  /> 
+
+         </fieldset>      
+    </form>
+    </section>
+
+</body>
+</html>

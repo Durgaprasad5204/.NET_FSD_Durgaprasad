@@ -1,0 +1,87 @@
+<!-- Problem 3: Product Feature List Section (Level-1)
+Scenario
+You are designing a feature highlight section for a product landing page that lists key features in a visually appealing way.
+📌 Requirements
+ Create a section with:
+	•	Section heading
+	•	List of 4–5 features
+Style the list using:
+	•	Custom fonts
+	•	Text color and background color
+	•	Border and padding for each feature item
+Use:
+	•	CSS selectors (element, class, descendant)
+Apply hover effects on feature items
+
+🛠️ Technical Constraints
+	•	Use unordered list (<ul>)
+	•	No JavaScript
+	•	No layout frameworks
+	•	Only basic HTML structure
+🎯 Learning Outcome
+You will be able to:
+	•	Practice CSS selectors
+	•	Style lists professionally
+	•	Improve UI consistency -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Feature List</title>
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f4f6f8;
+        }
+        .feature-section {
+            width: 60%;
+            margin: 40px auto;
+            text-align: center;
+            margin-left: 300px;
+        }
+        .feature-section h2 {
+            color: #2c3e50;
+            font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+        .feature-section ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .feature-section ul li {
+            background-color: #ffffff;
+            color: #51677c;
+            margin: 10px 0;
+            padding: 15px;
+            border: 2px solid #494678;
+            border-radius: 8px;
+            font-size: 18px;
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+        }
+        .feature-section ul li:hover {
+            background-color: #6f7744;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="feature-section">
+
+        <h2>Product Features</h2>
+
+        <ul>
+            <li>Fast Performance</li>
+            <li>User-Friendly Interface</li>
+            <li>Cloud Integration Support</li>
+            <li> Customer Support all day</li>
+            <li>Easy Compatibility</li>
+        </ul>
+
+    </div>
+
+</body>
+</html>

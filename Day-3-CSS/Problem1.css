@@ -1,0 +1,64 @@
+
+body{
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f8;
+    margin: 0;
+    padding: 0;
+}
+
+h1{
+    position: sticky;
+    color: white;
+    background-color: #007BFF;
+    text-align: center;
+    padding: 15px;
+}
+
+.about{
+    background-color: rgb(205, 206, 212);
+    border: 2px #7a8a9c;
+    margin: 20px;
+    padding: 50px;
+}
+.box{
+    background-color: lightyellow;
+    border: 15px solid orange;
+    margin: 20px;      
+    padding: 10px;     
+    text-align: center;
+    font-weight: bold;
+}
+.form{
+    background-color: white;
+    border: 2px solid green;
+    margin: 20px;
+    padding: 20px;
+}
+
+fieldset{
+    border: 2px solid lightgreen;
+    padding: 50px;
+
+}
+
+input[type = "text"]
+input[tpye = "password"]
+input[type = "mail"]
+select{
+    width: 100%;
+    padding: 10px;
+}
+input[type="submit"]
+{
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+
+
+
+
+
