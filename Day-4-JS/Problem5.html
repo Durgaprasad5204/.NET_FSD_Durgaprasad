@@ -1,0 +1,78 @@
+<!-- Problem 5: Number Analysis Tool (Level-2)
+Scenario A utility program is required to analyze numbers and provide insights such as positivity, parity, and range.
+📌 Requirements
+	•	Store a number in a variable
+	•	Use conditional (ternary) operator to check:
+	•	Positive or Negative
+	•	Use if–else to check:
+	•	Even or Odd
+	•	Use a loop to print all numbers from 1 to the given number
+
+🛠️ Technical Constraints
+	•	Store a number in a variable
+	•	Use conditional (ternary) operator to check:
+	•	Positive or Negative
+	•	Use if–else to check:
+	•	Even or Odd
+	•	Use a loop to print all numbers from 1 to the given number
+
+🎯 Learning Outcome
+You will be able to:
+	•	Combine multiple control flow techniques
+	•	Use loops for iteration
+	•	Apply conditional operators
+	•	Build multi-step logical programs -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Analysis Tool</title>
+    <link rel = "stylesheet" href = "Problem5.css">
+</head>
+<body>
+    <header>
+    <h1>Number Analysis Tool</h1>
+    </header>
+    <hr>
+    <main>
+    <label>Enter a Number: </label>
+    <input type ="number" id = "InpNum" placeholder="Enter the number" autofocus>
+    <br/><br/>
+    <input type = "button" value = "Enter" onclick = "analysis()">
+    <br/><br/>
+    <h3>Result:</h3>
+    <p id = "output1"></p>
+    <p id = "output2"></p>
+    <p id = "output3"></p>
+    </main>
+
+    <script>
+        function analysis(){
+        let number = Number(document.getElementById("InpNum").value);
+        let result = (number>0) ? "Positive NUmber" : "Negative Number"
+        let EvenOdd;
+        if(number%2===0){
+            EvenOdd = "Even Number";
+        }
+        else{
+            EvenOdd = "Odd Number"
+        }
+        let nums = "";
+        for(let i = 1; i<=number; i++){
+            nums += i + "<br>";
+        }
+        document.getElementById("output1").innerHTML = "Postive or negative: "+result;
+        document.getElementById("output2").innerHTML = "Even Or Odd : "+ EvenOdd;
+        document.getElementById("output3").innerHTML = "Numbers:<br>" + nums
+
+    }
+
+
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!-- Problem 3: Simple Discount Calculator (Level-1)
+Scenario
+An online store wants to apply a discount based on the total purchase amount.
+📌 Requirements
+	•	Store purchase amount in a variable
+	•	Apply discount rules:
+	•	Amount ≥ 5000 → 20% discount
+	•	Amount ≥ 3000 → 10% discount
+	•	Amount < 3000 → No discount
+	•	Calculate and display:
+	•	Discount amount
+	•	Final payable amount
+
+🛠️ Technical Constraints
+	•	Use arithmetic operators
+	•	Use if–else statements
+	•	Use only primitive data types
+No user input (hardcoded values allowed)
+🎯 Learning Outcome
+You will be able to:
+	•	Perform calculations using operators
+	•	Work with expressions
+	•	Apply conditional statements
+	•	Build real-world logic using JavaScript basics
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discount Calculator</title>
+</head>
+<body>
+
+    <h1>Simple Discount Calculator</h1>
+    <hr>
+
+    <label>Enter Amount: </label>
+    <input type="number" id="amount" required autofocus>
+    <br><br>
+    <input type ="button" onclick = "calc()" value="Enter the amount">
+    <p id="output"></p>
+    <script>
+        function calc(){
+            let amount = document.getElementById("amount").value;
+            let discount = 0;
+            let discountAmount = 0;
+            let finalAmount = 0;
+            if(amount <= 0){
+                document.getElementById("output").innerHTML = "Invalid amount";
+                return;
+            }
+            if(amount>=5000){
+                discount = 20;
+            }
+            else if(amount>=3000){
+                discount = 10;
+            }
+            else{
+                discount = 0;
+            }
+              discountAmount = (amount*discount)/100;
+            finalAmount = amount - discountAmount;
+            document.getElementById("output").innerHTML ="Discount Amount: " + discountAmount + "<br>" +"Final Amount: " + finalAmount;
+        }
+
+    </script>
+    
+</body>
+</html>
