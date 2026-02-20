@@ -1,0 +1,80 @@
+<!-- Problem 2: Simple Object-Based User Info Display (Level-1)
+Scenario
+A webpage needs to display basic user information stored inside a JavaScript object.
+📌 Requirements
+Create a JavaScript object user with properties:
+	•	name
+	•	age
+	•	city
+Create a function displayUserInfo(userObj):
+	•	Accepts the object as a parameter.
+	•	Displays user details in separate <p> elements.
+A button click should trigger the function.
+
+🛠️ Technical Constraints
+	•	Object properties must be accessed using dot notation.
+	•	Function should not use global variables.
+	•	DOM elements should be updated dynamically.
+🎯 Learning Outcome
+You will be able to:
+	•	Understand JavaScript objects.
+	•	Pass objects to functions.
+	•	Display object data dynamically on a webpage. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Info Display</title>
+</head>
+<body>
+<h1>User Information</h1>
+<hr>
+
+<label>Enter Name:</label>
+<input type="text" id="nameInput" required autofocus>
+<br><br>
+
+<label>Enter Age:</label>
+<input type="number" id="ageInput" min="18" max="80">
+<br><br>
+
+<label>Enter City:</label>
+<input type="text" id="cityInput" required>
+<br><br>
+
+<input type="button" value="Display User Info" onclick="createUser()">
+
+<hr>
+<p id="p1"></p>
+<p id="p2"></p>
+<p id="p3"></p>
+
+<script>
+
+function createUser()
+{
+    let nameValue = document.getElementById("nameInput").value; //takes the username
+    let ageValue = document.getElementById("ageInput").value;  //takes the userage
+    let cityValue = document.getElementById("cityInput").value; //takes the city input
+
+    let user = {
+        name: nameValue,
+        age: ageValue,
+        city: cityValue
+    };
+
+    displayUserInfo(user);
+}
+
+function displayUserInfo(userObj)
+{
+    document.getElementById("p1").innerHTML = "Name: " + userObj.name; //display user name
+    document.getElementById("p2").innerHTML = "Age: " + userObj.age;  //display user age
+    document.getElementById("p3").innerHTML = "City: " + userObj.city; // display user city
+}
+
+</script>
+
+</body>
+</html>

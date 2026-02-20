@@ -1,0 +1,103 @@
+<!-- Problem 4: Dynamic Student Profile Manager (Level-2)
+Scenario Create a mini student profile system where details are stored in an object and displayed dynamically using DOM manipulation.
+📌 Requirements
+Create a student object with:
+	•	name
+	•	rollNo
+	•	marks
+ Create a function updateStudentProfile(studentObj):
+	•	Accepts the object as a parameter.
+	•	Displays details in a styled <div>.
+Add another function updateMarks(newMarks):
+	•	Updates marks and refreshes the display.
+
+🛠️ Technical Constraints
+	•	Student object must be declared in global scope.
+	•	Functions should update object values using parameters.
+	•	DOM should update without page refresh.
+
+🎯 Learning Outcome
+You will be able to:
+	•	Deep understanding of object manipulation.
+	•	Function interaction with shared data.
+	•	Real-world use of DOM updates and scope handling.
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Profile Manager</title>
+
+</head>
+<body>
+
+
+<h2>Student Profile Manager</h2>
+
+<hr>
+
+<!-- User Inputs -->
+
+<label>Enter Name:</label>
+<input type="text" id="nameInput" required autofocus>
+<br><br>
+
+<label>Enter Roll No:</label>
+<input type="number" id="rollInput" required autofocus>
+<br><br>
+
+<label>Enter Marks:</label>
+<input type="number" id="marksInput" required>
+<br><br>
+
+<input type="button" value="Create or Update Profile" onclick="getStudentInput()">
+
+<br><br>
+<!-- Display Div -->
+
+<div id="profileDiv">
+Student profile will appear here
+</div>
+
+
+<script>
+
+    // Global student object
+    var student =
+    {
+        name: "",
+        rollNo: "",
+        marks: ""
+    };
+
+    // Function to display profile
+    function updateStudentProfile(studentObj)
+    {
+        document.getElementById("profileDiv").innerHTML =
+            "<h3>Student Profile</h3>" +
+            "Name: " + studentObj.name + "<br>" +
+            "Roll No: " + studentObj.rollNo + "<br>" +
+            "Marks: " + studentObj.marks;
+    }
+
+    // Function to take input from user
+    function getStudentInput()
+    {
+        var nameValue = document.getElementById("nameInput").value;
+        var rollValue = document.getElementById("rollInput").value;
+        var marksValue = document.getElementById("marksInput").value;
+
+        // Update global object
+        student.name = nameValue;
+        student.rollNo = rollValue;
+        student.marks = marksValue;
+
+        // Update display
+        updateStudentProfile(student);
+    }
+
+</script>
+
+</body>
+</html>
