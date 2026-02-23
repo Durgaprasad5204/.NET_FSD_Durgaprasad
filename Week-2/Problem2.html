@@ -1,0 +1,149 @@
+<!-- Problem 2: Live Form Validation with Events (Level-1)
+Scenario
+Create a simple registration form that validates user input when fields change.
+📌 Requirements
+	•	Fields:
+Name
+Email
+Age
+	•	Use:
+onchange
+onclick
+	•	Validate:
+Name cannot be empty
+Email must contain "@"
+Age must be greater than 18
+	•	Display validation message dynamically.
+	•	Store valid user data in sessionStorage.
+🛠️ Technical Constraints
+	•	Must use inline onchange events.
+	•	Store valid data using:
+sessionStorage.setItem()
+	•	No external libraries.
+	•	Use basic JavaScript only.
+🎯 Learning Outcome
+You will be able to:
+	•	onchange event usage
+	•	Form validation logic
+	•	Difference between localStorage and sessionStorage
+	•	Dynamic DOM updates
+ -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Live Form Validation</title>
+</head>
+<body>
+
+<h2>Registration Form</h2>
+
+<fieldset>
+<form id="form">
+
+    <label>Name:</label>
+    <input type="text" id="name" onchange="validateName()">
+    <p id="nameMsg"></p>
+    <br><br>
+
+    <label>Email:</label>
+    <input type="text" id="email" onchange="validateEmail()">
+    <p id="emailMsg"></p>
+    <br><br>
+
+    <label>Age:</label>
+    <input type="number" id="age" onchange="validateAge()">
+    <p id="ageMsg"></p>
+    <br><br>
+    <button type="button" onclick="submitForm()">Submit</button>
+
+</form>
+</fieldset>
+
+<p id="msg"></p>
+
+<script>
+
+function validateName(){
+    let value = document.getElementById("name").value;
+
+    if(value == ""){
+        document.getElementById("nameMsg").innerText = "Name cannot be empty";
+        document.getElementById("nameMsg").style.color = "red";
+        return false;
+    }
+    else{
+        document.getElementById("nameMsg").innerText = "Valid Name";
+        document.getElementById("nameMsg").style.color = "green";
+        return true;
+
+
+    }
+}
+
+function validateEmail(){
+    let value = document.getElementById("email").value;
+    if(value.includes("@")){
+        document.getElementById("emailMsg").innerText = "Valid Email";
+        document.getElementById("emailMsg").style.color = "green";
+        return true;
+    }
+    else{
+        document.getElementById("emailMsg").innerText = "Email must contain @";
+        document.getElementById("emailMsg").style.color = "red";
+        return false;
+    }
+
+
+}
+
+function validateAge(){
+    let value = document.getElementById("age").value;
+
+    if(value > 18){
+        document.getElementById("ageMsg").innerText = "Valid Age";
+        document.getElementById("ageMsg").style.color = "green";
+        return true;
+    }
+    else{
+        document.getElementById("ageMsg").innerText = "Age must be greater than 18";
+        document.getElementById("ageMsg").style.color = "red";
+        return false;
+
+
+    }
+
+
+}
+
+function submitForm(){
+    let isNameValid = validateName();
+    let isEmailValid = validateEmail();
+    let isAgeValid = validateAge();
+
+    if(isNameValid && isEmailValid && isAgeValid){
+        let n = document.getElementById("name").value;
+        let e = document.getElementById("email").value;
+        let a = document.getElementById("age").value;
+
+        sessionStorage.setItem("name", n);
+        sessionStorage.setItem("email", e);
+        sessionStorage.setItem("age", a);
+
+        document.getElementById("msg").innerText = "Details saved successfully";
+        document.getElementById("msg").style.color = "green";
+
+        
+    }
+    else{
+        document.getElementById("msg").innerText = "Please enter valid details";
+        document.getElementById("msg").style.color = "red";
+
+
+    }
+}
+
+</script>
+
+</body>
+</html>

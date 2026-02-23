@@ -1,0 +1,214 @@
+<!-- Problem 4: Mini Expense Tracker using Client-Side Database (Level-2)
+Scenario Develop a client-side expense tracker where users can add, view, and delete expenses using a browser-supported database. 
+📌 Requirements
+	•	Fields:
+	•	Expense Title
+	•	Amount
+	•	Date
+	•	Buttons:
+	•	Add Expense
+	•	View Expenses
+	•	Delete Expense
+	•	Use:
+	•	Client-side database (Web SQL or IndexedDB)
+	•	Execute SQL-like queries:
+	•	CREATE TABLE
+	•	INSERT
+	•	SELECT
+	•	DELETE
+	•	Maintain transaction handling.
+	•	Display expense list dynamically.
+
+🛠️ Technical Constraints
+	•	Must use:
+	•	Client-side DB transactions
+	•	SQL execution methods
+	•	Must handle:
+	•	Transaction errors
+	•	Query errors
+	•	No server/database allowed.
+	•	Pure JavaScript + HTML.
+
+🎯 Learning Outcome
+You will be able to:
+	•	Client-side database concepts
+	•	Executing SQL queries in browser
+	•	Managing transactions
+	•	Advanced DOM rendering
+	•	Persistent structured storage
+ -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mini Expense Tracker (Web SQL)</title>
+</head>
+<body>
+
+<h2>Mini Expense Tracker</h2>
+<hr>
+
+<!-- Input Fields -->
+<label>Expense Title:</label>
+<input type="text" id="title">
+
+<br><br>
+
+<label>Amount:</label>
+<input type="number" id="amount">
+
+<br><br>
+
+<label>Date:</label>
+<input type="date" id="date">
+
+<br><br>
+
+<!-- Buttons -->
+<button onclick="addExpense()">Add Expense</button>
+<button onclick="viewExpenses()">View Expenses</button>
+<button onclick="deleteExpense()">Delete Expense</button>
+
+<hr>
+
+<h3>Expense List</h3>
+<div id="expenseList"></div>
+
+<script>
+
+var db;
+
+// Step 1: Open Database
+function openDatabaseConnection()
+{
+    db = openDatabase(
+        "ExpenseDB",     // Database name
+        "1.0",           // Version
+        "Expense Tracker Database", // Description
+        2 * 1024 * 1024 // Size (2MB)
+    );
+
+    if(!db)
+    {
+        alert("Database not supported");
+        return;
+    }
+
+    // Step 2: Create Table
+    db.transaction(function(tx)
+    {
+        tx.executeSql(
+            "CREATE TABLE IF NOT EXISTS expenses (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, amount REAL, date TEXT)",
+            [],
+            function()
+            {
+                console.log("Table created successfully");
+            },
+            function(tx, error)
+            {
+                alert("Table creation error: " + error.message);
+            }
+        );
+    });
+}
+
+// Step 3: Add Expense
+function addExpense()
+{
+    var title = document.getElementById("title").value;
+    var amount = document.getElementById("amount").value;
+    var date = document.getElementById("date").value;
+
+    if(title == "" || amount == "" || date == "")
+    {
+        alert("Please fill all fields");
+        return;
+    }
+
+    db.transaction(function(tx)
+    {
+        tx.executeSql(
+            "INSERT INTO expenses (title, amount, date) VALUES (?, ?, ?)",
+            [title, amount, date],
+            function()
+            {
+                alert("Expense added successfully");
+            },
+            function(tx, error)
+            {
+                alert("Insert error: " + error.message);
+            }
+        );
+    });
+}
+
+// Step 4: View Expenses
+function viewExpenses()
+{
+    db.transaction(function(tx)
+    {
+        tx.executeSql(
+            "SELECT * FROM expenses",
+            [],
+            function(tx, result)
+            {
+                var output = "";
+
+                for(var i=0; i<result.rows.length; i++)
+                {
+                    var row = result.rows.item(i);
+
+                    output +=
+                    "ID: " + row.id +
+                    " | Title: " + row.title +
+                    " | Amount: " + row.amount +
+                    " | Date: " + row.date +
+                    "<br>";
+                }
+
+                document.getElementById("expenseList").innerHTML = output;
+            },
+            function(tx, error)
+            {
+                alert("Select error: " + error.message);
+            }
+        );
+    });
+}
+
+// Step 5: Delete Expense
+function deleteExpense()
+{
+    var id = prompt("Enter Expense ID to delete:");
+
+    if(id == null || id == "")
+    {
+        alert("Invalid ID");
+        return;
+    }
+
+    db.transaction(function(tx)
+    {
+        tx.executeSql(
+            "DELETE FROM expenses WHERE id = ?",
+            [id],
+            function()
+            {
+                alert("Expense deleted successfully");
+                viewExpenses();
+            },
+            function(tx, error)
+            {
+                alert("Delete error: " + error.message);
+            }
+        );
+    });
+}
+
+// Initialize database when page loads
+openDatabaseConnection();
+
+</script>
+
+</body>
+</html>

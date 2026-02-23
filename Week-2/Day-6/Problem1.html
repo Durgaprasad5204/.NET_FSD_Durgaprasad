@@ -1,0 +1,92 @@
+<!-- Problem 1: Personal Notes Saver using LocalStorage (Level-1)
+Scenario You are building a simple web page where users can write daily notes and save them in their browser without using a server.
+📌 Requirements
+	•	A textarea for writing notes.
+	•	A Save button (using onclick).
+	•	A Clear button.
+	•	Notes must:
+Be stored in localStorage
+Automatically load when the page refreshes
+	•	Display stored note on page load.
+
+🛠️ Technical Constraints
+	•	Must use:
+	•	onclick inline event
+	•	localStorage.setItem()
+	•	localStorage.getItem()
+	•	localStorage.removeItem()
+	•	No backend/database.
+	•	Pure HTML + JavaScript only.
+	•	Data stored as key-value pair.
+
+🎯 Learning Outcome
+You should be able to:
+	•	Inline event handling (onclick)
+	•	Browser Storage APIs
+	•	Storing & retrieving key-value data
+	•	Page load event handling
+	•	Basic DOM manipulation
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Notes Saver</title>
+
+<body>
+    
+</body>
+</html>
+<body>
+
+    <h2>Personal Notes Saver</h2>
+    <hr>
+
+    <input type="textarea" id="notesBox" placeholder="Write your notes...." required>
+
+    <br><br>
+    <button onclick="saveNote()">Save</button>
+    <button onclick="getNote()">Get Text</button>
+    <button onclick="clearNote()">Clear</button>
+    <hr>
+
+    <h3>Saved Notes:</h3>
+    <p id="dispay"></p>
+
+    <script>
+
+        // func to save notes
+        function saveNote(){
+            let text = document.getElementById("notesBox").value;
+            localStorage.setItem("myNotes", text);
+            document.getElementById("dispay").innerText = text;
+            alert("Notes saved successfully");
+        }
+
+
+        // func to get notes from localStorage
+        function getNote(){
+            let saved = localStorage.getItem("myNotes");
+            if(saved != null){
+                document.getElementById("dispay").innerText = saved;
+                document.getElementById("notesBox").value = saved;
+            }
+            else{
+                alert("No notes found");
+            }
+        }
+        // func to clear notes
+        function clearNote(){
+            localStorage.removeItem("myNotes");
+            document.getElementById("notesBox").value = "";
+            document.getElementById("dispay").innerText = "";
+
+            alert("Notes cleared!");
+        }
+
+    </script>
+
+</body>
+</html>
