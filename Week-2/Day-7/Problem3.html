@@ -1,0 +1,111 @@
+<!-- 
+2.   Create a web page to implement following requirements:
+			a.  create collection of employees using array of objects 
+			b.  provide drop-down list in the page to select the job
+					options:
+							All Employees
+							Manager
+							Salesman
+							....		
+			c.   "Show Emps"  button --  display employees data in table format based on the selected job. 
+		 -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Array of Objects</title>
+</head>
+<body>
+
+<h1>Employees Array of Objects</h1>
+<hr/>
+
+<label>Select Job : </label>
+<select id="job">
+    <option value="All">All Employees</option>
+    <option value="Manager">Manager</option>
+    <option value="Salesman">Salesman</option>
+    <option value="Clerk">Clerk</option>
+    <option value="CEO">CEO</option>
+    <option value="Developer">Developer</option>
+    
+</select>
+
+<br/><br/>
+
+<button onclick="buttonClick()">Show Employees</button>
+
+<hr/>
+
+<table border="1px">
+    <thead>
+        <tr>
+            <th>Emp No</th>
+            <th>Name</th>
+            <th>Job</th>
+            <th>Salary</th>
+        </tr>
+    </thead>
+
+    <tbody id="tableBody"></tbody>
+</table>
+
+<hr/>
+
+<script>
+
+function buttonClick()
+{
+    // array of objects
+    let employeesArray = [
+        {id:101, name:"Durga", job:"Manager", salary:80000},
+        {id:102, name:"Prasad", job:"Salesman", salary:30000},
+        {id:103, name:"Sai", job:"Clerk", salary:20000},
+        {id:104, name:"Shiva", job:"Manager", salary:90000},
+        {id:105, name:"Shankar", job:"Salesman", salary:35000},
+        {id:106, name:"Naga", job:"CEO", salary:100000},
+        {id:107, name:"Shannu", job:"Developer", salary:90000},
+        {id:107, name:"Bunty", job:"Developer", salary:85000}
+
+    ];
+    console.log(employeesArray);
+
+    // get selected job
+    let selectedJob = document.getElementById("job").value;
+    console.log(selectedJob);
+
+    // filter logic using if else intiliazing with empty array
+    let resultArray = [];
+
+    if(selectedJob == "All"){
+        resultArray = employeesArray;
+    }
+    else{
+        resultArray = employeesArray.filter(emp => emp.job == selectedJob);
+    }
+    console.log(resultArray);
+
+
+    // display in table
+    let tableBody = document.getElementById("tableBody");
+
+tableBody.innerHTML = "";
+
+resultArray.forEach(emp => {
+    let row = `<tr> 
+              <td>  ${emp.id}  </td>
+              <td>  ${emp.name}  </td> 
+              <td>  ${emp.job}  </td> 
+              <td>  ${emp.salary}  </td> 
+              </tr>`;
+
+    tableBody.innerHTML += row;
+
+});
+
+}
+
+</script>
+
+</body>
+</html>

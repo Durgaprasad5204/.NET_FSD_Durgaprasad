@@ -1,0 +1,117 @@
+<!-- PROBLEM 2: Product Cart Summary (LEVEL-1)
+Scenario:
+Build a simple shopping cart summary system.
+
+📌 Requirements 
+- Store product objects (name, price, quantity) in an array.
+- Calculate total cart value.
+- Display formatted invoice using template literals.
+- Use arrow functions.
+- Export calculation function from a module.
+
+🛠️ Technical Constraints
+- Use map() and reduce().
+- Use ES6 modules (export/import).
+- No DOM manipulation required.
+
+🎯 Learning Outcome
+- Work with arrays of objects.
+- Understand modules.
+- Improve functional programming skills.
+ -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product Cart Summary</title>
+</head>
+<body>
+
+<h1>Product Cart Summary</h1>
+<hr/>
+
+<!-- Input fields -->
+<label>Product Name : </label>
+<input type ="text " id="pname">
+
+<br/><br/>
+
+<label>Price : </label>
+<input type="number" id="pprice">
+
+<br/><br/>
+
+<label>Quantity : </label>
+<input type="number" id="pqty">
+
+<br/><br/>
+
+<button onclick="addProduct()">Add Product</button>
+<button onclick="showSummary()">Show Cart Summary</button>
+
+<hr/>
+
+<h3>Cart Details</h3>
+<div id="output"></div>
+
+<hr/>
+
+<h3 id="finalTotal"></h3>
+
+
+<script>
+
+// array of objects
+let productsArray = [];
+
+
+// function to add product
+function addProduct()
+{
+    let name = document.getElementById("pname").value;
+    let price = document.getElementById("pprice").value;
+    let quantity = document.getElementById("pqty").value;
+
+    price = Number(price);
+    quantity = Number(quantity);
+
+// creating Objexts with the input name 
+    let product = {
+        name: name,
+        price: price,
+        quantity: quantity
+    };
+    productsArray.push(product);
+
+    alert("Product Added Successfully");
+
+    console.log(productsArray);
+}
+
+
+// function to show cart summary
+function showSummary()
+{
+    let output = document.getElementById("output");
+    output.innerHTML = "";
+
+    let totalCartValue = 0;
+
+    productsArray.forEach(product =>{
+        let total = product.price * product.quantity;
+        totalCartValue += total;
+
+        output.innerHTML +=
+            "Product Name : " + product.name + "<br>" +
+            "Price : " + product.price + "<br>" +
+            "Quantity : " + product.quantity + "<br>" +
+            "Total : " + total + "<br><br>";
+    });
+
+    document.getElementById("finalTotal").innerHTML = "Total Cart Value : " + totalCartValue;
+}
+
+</script>
+
+</body>
+</html>

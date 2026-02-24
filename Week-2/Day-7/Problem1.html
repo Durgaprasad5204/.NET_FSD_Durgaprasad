@@ -1,0 +1,105 @@
+<!-- PROBLEM 1: Student Marks Analyzer (LEVEL-1)
+Scenario:
+You are developing a small utility for a teacher to analyze student marks stored in an array.
+
+📌 Requirements
+- Store student marks in an array.
+- Calculate total and average marks using array methods.
+- Display pass/fail result based on average.
+- Use let/let appropriately.
+- Use arrow functions for calculations.
+- Display output using template literals.
+
+🛠️ Technical letraints
+- Must use array methods like reduce() and map().
+- No external libraries.
+- All logic must be inside modular JavaScript file.
+
+🎯 Learning Outcome
+- Understand array processing.
+- Practice ES6 features.
+- Learn modular coding structure. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Marks Analyzer</title>
+</head>
+<body>
+
+<h2>Student Marks Analyzer</h2>
+<hr>
+
+<label>Enter marks (comma separated):</label><br><br>
+
+<input type="text" id="marks" placeholder="Example: 65,70,45,80,90" required autofocus>
+
+<br><br>
+
+<button onclick="analyzeMarks()">Analyze Marks</button>
+
+<hr>
+
+<p id="output"></p>
+
+
+<script>
+
+// Main function on button
+let analyzeMarks = () =>{
+    //Taking input from browser
+    let input = document.getElementById("marks").value;
+    // Convert string to array
+    let marksArray = input.split(",").map(value => Number(value));
+
+    //Calculating values by declaring variables 
+    let marksText = showMarks(marksArray);
+    let total = getTotal(marksArray);
+    let average = Average(total, marksArray.length);
+    let result = Result(average);
+
+    //Display output using backward literal `
+    document.getElementById("output").innerHTML =`<strong>Student Marks Analysis</strong><br><br>${marksText}<br>
+    Total Marks = ${total} <br>
+    Average Marks = ${average} <br>
+    Result = ${result}
+    `;
+};
+
+// Function to display marks using map()
+let showMarks = (marksArray) =>{
+    let text = "";
+    marksArray.map((value, index) =>{
+        text += `Subject ${index + 1} Marks = ${value} <br>`;
+    });
+    return text;
+};
+
+
+// Function to calculate total using reduce()
+let getTotal = (marksArray) =>{
+    return marksArray.reduce((sum, value) => sum + value, 0);
+};
+
+
+// Function to calculate average
+let Average = (total, count) =>{
+    return total / count;
+};
+
+
+// Function to check pass/fail
+let Result = (average) =>{ 
+    if(average >= 50) 
+        return "PASS"; 
+    else 
+        return "FAIL"; 
+};
+
+
+</script>
+
+</body>
+</html>
