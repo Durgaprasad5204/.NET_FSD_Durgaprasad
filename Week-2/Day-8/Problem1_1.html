@@ -1,0 +1,128 @@
+<!-- PROBLEM 3: Weather Data Fetcher (LEVEL-2)
+
+Scenario:
+Create an application that fetches weather data asynchronously.
+
+📌 Requirements
+- Fetch data from a public API using fetch().
+- Implement version using Promises.
+- Implement version using async/await.
+- Handle errors properly.
+- Display formatted weather report.
+
+🛠️ Technical Constraints
+- Use async/await.
+- Use template literals.
+- Use arrow functions.
+- Must include proper error handling using try/catch.
+
+🎯 Learning Outcome
+- Understand Promises and async/await.
+- Handle asynchronous operations.
+- Improve API handling skills.
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asynchronous Programming</title>
+</head>
+<body>
+
+<h2>Async and Promises to get Weather</h2>
+<hr/>
+
+<button onclick="fn_getDataAsync()">Get Weather using async</button>
+<button onclick="fn_getData()">Get weather using promises</button>
+
+<br/><br/>
+
+<div id="list1" style="border:2px solid black; padding:30px;">
+
+</div>
+
+<br/>
+
+<div id="list2" style="border:2px solid orange; padding:30px;">
+
+</div>
+
+<br/>
+
+
+<script>
+
+
+let lstObj1 = document.getElementById("list1");
+let lstObj2 = document.getElementById("list2");
+let url =
+"https://api.open-meteo.com/v1/forecast?latitude=17.3850&longitude=78.4867&current_weather=true";
+
+
+
+// Async/Await 
+let fn_getDataAsync = async () =>{
+    try{
+        let response = await fetch(url);
+        if(!response.ok)
+            throw "Error fetching weather";
+
+        let data = await response.json();
+
+        displayDataAsync(data);
+    }
+    catch(error)
+    {
+        lstObj1.innerHTML = `<div>Error : ${error}</div>`;
+    }
+};
+
+
+
+
+// Promises using fetch and .then and .catch
+let fn_getData = () =>
+{
+    fetch(url)
+    .then(response =>{
+        if(!response.ok)
+            throw "Error fetching weather";
+
+        return response.json();
+    })
+    .then(data =>{
+        displayDataPromise(data);
+    })
+    .catch(error =>{
+        lstObj2.innerHTML = `<div>Error : ${error}</div>`;
+    });
+};
+
+//  display for async
+let displayDataAsync = (data) =>{
+    let str = formatWeather(data);
+    lstObj1.innerHTML = str;
+};
+
+// display for promises
+let displayDataPromise = (data) =>{
+    let str = formatWeather(data);
+    lstObj2.innerHTML = str;
+};
+
+
+
+let formatWeather = (data) =>{
+    return`
+    <div>Temperature : ${data.current_weather.temperature} °C</div>
+    <div>Wind Speed : ${data.current_weather.windspeed} km/h</div>
+    <div>Wind Direction : ${data.current_weather.winddirection} degrees</div>
+    `;
+};
+
+</script>
+
+</body>
+</html>
+

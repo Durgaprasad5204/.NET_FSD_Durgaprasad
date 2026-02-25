@@ -1,0 +1,126 @@
+<!-- LEVEL – 2 (Problem 3): Dynamic To-Do List 
+Scenario:
+A productivity application requires an interactive To-Do list where users can add, delete, and mark tasks as complete without refreshing the page.
+📌 Requirements
+• Add new tasks dynamically.
+• Delete tasks on button click.
+• Mark tasks as completed.
+• Use event delegation for better performance.
+ 
+🛠️ Technical Constraints
+• Must use DOM manipulation.
+• Event delegation required.
+• Code should follow modular structure.
+ 
+Expectations:
+• Fully functional interactive UI.
+• Organized and reusable functions.
+ 
+🎯 Learning Outcome
+• Advanced DOM event handling.
+• Event delegation concept.
+• Understanding role of libraries in speeding up development.
+---------------------------------------------------------- -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic TO-DO List</title>
+
+    <style>
+        body
+        {
+            font-family: Arial;
+        }
+
+        .completed
+        {
+            text-decoration: line-through;
+            color: gray;
+        }
+
+        button
+        {
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Dynamic TO-DO List</h2>
+    <hr>
+
+    <!-- Input box -->
+    <input type="text" id="taskInput" placeholder="Enter new task">
+
+    <!-- Add button -->
+    <button onclick="addTask()">Add Task</button>
+
+    <br><br>
+
+    <!-- Task list -->
+    <ul id="taskList"></ul>
+
+
+    <script>
+
+        // Get task list element
+        let taskList = document.getElementById("taskList");
+
+
+        // Function to add new task
+        function addTask()
+        {
+            let input = document.getElementById("taskInput");
+            let taskText = input.value.trim();
+
+            // Check if empty
+            if(taskText === "")
+            {
+                alert("Please enter a task");
+                return;
+            }
+
+            // Create list item
+            let li = document.createElement("li");
+
+            // Add task text
+            li.innerHTML = taskText + 
+            " <button class='completeBtn'>Complete</button>" +
+            " <button class='deleteBtn'>Delete</button>";
+
+            // Add to list
+            taskList.appendChild(li);
+
+            // Clear input
+            input.value = "";
+        }
+
+
+
+        // EVENT DELEGATION
+        taskList.addEventListener("click", function(event)
+        {
+            let clickedElement = event.target;
+
+            // Delete task
+            if(clickedElement.classList.contains("deleteBtn"))
+            {
+                let li = clickedElement.parentElement;
+                taskList.removeChild(li);
+            }
+
+            // Complete task
+            if(clickedElement.classList.contains("completeBtn"))
+            {
+                let li = clickedElement.parentElement;
+                li.classList.toggle("completed");
+            }
+        });
+
+
+    </script>
+
+</body>
+</html>

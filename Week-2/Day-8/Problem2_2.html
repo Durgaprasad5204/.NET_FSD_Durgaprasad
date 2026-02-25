@@ -1,0 +1,104 @@
+<!-- LEVEL – 1 (Problem 2): Theme Toggle Application
+Scenario:
+A small blog website wants to allow users to switch between Light Mode and Dark Mode interactively.
+ 
+📌 Requirements
+• Create a toggle button to switch themes.
+• Change background and text color dynamically.
+• Store theme preference in localStorage.
+ 
+🛠️ Technical Constraints
+• Use Vanilla JavaScript.
+• Use addEventListener() for events.
+• No CSS frameworks.
+ 
+Expectations:
+• Smooth theme switching.
+• Proper usage of localStorage.
+• Clean and modular JavaScript functions.
+ 
+🎯 Learning Outcome
+• Handling user interaction events.
+• Managing browser storage.
+------------------------------------------------------------ -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Theme Toggle Application</title>
+
+    <style>
+        body {
+            font-family: Arial;
+
+        }
+        .light-theme {
+            background-color: white;
+            color: black;
+        }
+        .dark-theme {
+            background-color: #1e1e1e;
+            color: white;
+        }
+        button {
+            align-items: center;
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1 align="center">My Blog</h1>
+    <p align="center">This is my sample blog .</p>
+
+    <button id="Button">Switch Theme</button>
+
+    <script>
+
+        // Applying theme
+        function applyTheme(themeName)
+        {
+            document.body.className = themeName;
+
+            // Save theme in localStorage
+            localStorage.setItem("theme", themeName);
+        }
+
+            // Function Toggle theme
+        function toggleTheme(){
+            let currentTheme = document.body.className;
+
+            if(currentTheme === "light-theme"){
+                applyTheme("dark-theme");
+            }
+            else{
+                applyTheme("light-theme");
+            }
+        }
+
+
+        // saved theme on page load
+        function loadTheme(){
+            let savedTheme = localStorage.getItem("theme");
+
+            if(savedTheme){
+                applyTheme(savedTheme);
+            }
+            else{
+                applyTheme("light-theme"); // bydefault theme
+            }
+        }
+
+        // EVENT LISTENER
+        document.getElementById("Button").addEventListener("click", toggleTheme);
+        // call function when the page loads
+        loadTheme();
+
+    </script>
+
+</body>
+</html>

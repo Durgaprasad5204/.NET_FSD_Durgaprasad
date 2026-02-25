@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Task Manager Async Storage</title>
+</head>
+<body>
+
+<h2>Task Manager with Async Storage</h2>
+<hr>
+
+<input type="text" id="taskInput" placeholder="Enter task">
+<button onclick="addTaskAsync()">Add Task</button>
+<button onclick="listTasksAsync()">Show Tasks</button>
+
+<ul id="taskList"></ul>
+
+
+<script>
+
+// Array to store tasks
+let tasks = [];
+
+
+// CALLBACK VERSION
+
+// Add task using callback
+function addTaskCallback(task, callback)
+{
+    setTimeout(function()
+    {
+        tasks.push(task);
+        callback("Task Added");
+    }, 1000);
+}
+
+
+// List tasks using callback
+function listTasksCallback(callback)
+{
+    setTimeout(function()
+    {
+        callback(tasks);
+    }, 1000);
+}
+
+
+
+// PROMISE VERSION
+
+// Add task using Promise
+function addTaskPromise(task)
+{
+    return new Promise(function(resolve)
+    {
+        setTimeout(function()
+        {
+            tasks.push(task);
+            resolve("Task Added");
+        }, 1000);
+    });
+}
+
+
+// Delete task using Promise
+function deleteTaskPromise(index)
+{
+    return new Promise(function(resolve)
+    {
+        setTimeout(function()
+        {
+            tasks.splice(index, 1);
+            resolve("Task Deleted");
+        }, 1000);
+    });
+}
+
+
+// List tasks using Promise
+function listTasksPromise()
+{
+    return new Promise(function(resolve)
+    {
+        setTimeout(function()
+        {
+            resolve(tasks);
+        }, 1000);
+    });
+}
+
+
+
+// ASYNC / AWAIT VERSION (FINAL)
+
+// Add task
+async function addTaskAsync()
+{
+    let input = document.getElementById("taskInput");
+    let task = input.value;
+
+    let message = await addTaskPromise(task);
+    console.log(message);
+
+    let allTasks = await listTasksPromise();
+
+    displayTasks(allTasks);
+
+    input.value = "";
+}
+
+
+// Delete task
+async function deleteTaskAsync(index)
+{
+    let message = await deleteTaskPromise(index);
+    console.log(message);
+
+    let allTasks = await listTasksPromise();
+
+    displayTasks(allTasks);
+}
+
+
+// List tasks
+async function listTasksAsync()
+{
+    let allTasks = await listTasksPromise();
+
+    displayTasks(allTasks);
+}
+
+
+
+// DISPLAY FUNCTION
+
+function displayTasks(allTasks)
+{
+    let list = document.getElementById("taskList");
+
+    list.innerHTML = "";
+
+    for(let i = 0; i < allTasks.length; i++)
+    {
+        list.innerHTML += `
+        <li>
+            ${allTasks[i]}
+            <button onclick="deleteTaskAsync(${i})">Delete</button>
+        </li>
+        `;
+    }
+}
+
+
+</script>
+
+</body>
+</html>
