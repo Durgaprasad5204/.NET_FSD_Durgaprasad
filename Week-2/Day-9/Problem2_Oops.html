@@ -1,0 +1,59 @@
+<!-- Problem 2 — Inheritance
+Problem: Create a Vehicle Management System using inheritance.
+Requirements:
+	•	Create a base class Vehicle
+	•	properties: brand, speed
+	•	method: displayInfo()
+	•	Create a derived class Car that:
+	•	inherits from Vehicle
+	•	adds property fuelType
+	•	adds method showCarDetails()
+Expected Task:
+	•	Create one Car object.
+	•	Call both parent and child methods. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OOPS-Inheritance</title>
+</head>
+<body>
+    <h2>Vehicle Management Using Inheritance</h2>
+    <hr>
+    <button onclick="getCar()">Show car</button>
+    <p id = "output"></p>
+    <script>
+
+        class Vehicle{
+            //constructor
+            constructor(brand,speed){
+                this.brand = brand;
+                this.speed = speed;
+
+            }
+            //display info method
+            displayInfo(){
+                return "Brand: " + this.brand + "<br>Speed: " + this.speed + " km/h";
+                }
+
+        }
+    class Car extends Vehicle{
+        constructor(brand,speed,fuelType){
+            super(brand,speed);            //superclass inherits parent 
+            this.fuelType = fuelType;
+    
+        }
+        showcarDetails(){
+            return "Fuel type: "+this.fuelType;
+
+        }
+    }
+    function getCar(){
+        let car1 = new Car("Tata", 120,"Diesel");
+        let car2 = new Car("Honda",130,"Petrol");
+        document.getElementById("output").innerHTML= car1.displayInfo() +"<br>"+car1.showcarDetails() + "<br><br>"+ car2.displayInfo()+"<br>"+car2.showcarDetails()  
+}
+    </script>
+</body>
+</html>

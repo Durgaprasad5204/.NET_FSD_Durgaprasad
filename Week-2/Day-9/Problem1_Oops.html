@@ -1,0 +1,68 @@
+<!-- Problem-1 — Class & Object (Encapsulation)
+Problem: Create a Student class with the following:
+Requirements:
+	•	Properties:
+	•	name
+	•	rollNumber
+	•	marks
+	•	Methods:
+	•	getDetails() → display student details
+	•	getGrade() → return grade based on marks:
+	•	90+ → A
+	•	75–89 → B
+	•	50–74 → C
+	•	Below 50 → Fail -->
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>OOPs-Encapsulation</title>
+    </head>
+    <body>
+        <h2>Student Details</h2>
+        <hr>
+        <button onclick = "DisplayStudent()"> Get Details </button>
+        <br><br>
+        <p id = "output"></p>
+
+        <script>
+            class Student{
+                //constructor
+                constructor(name,rollNumber,marks){
+                    this.name = name;
+                    this.rollNumber = rollNumber;
+                    this.marks = marks;
+                }
+                getDetails(){
+                    return `Name: ${this.name} <br> RollNumber: ${this.rollNumber} <br> marks: ${this.marks}`
+                }
+                
+                getGrade(){
+                    if(this.marks>=90){
+                        return "A grade";
+                    }
+                    else if(this.marks>=75){
+                        return "B grade";
+                    }
+                    else if(this.marks >= 50){
+                        return "C grade";
+        
+                    }
+                    else{
+                        return "<span style=color:red;>Fail</span>"
+
+                    }
+                }
+            }
+            function DisplayStudent(){
+                let student1 = new Student("Durga",1,95);
+                let student2 = new Student("Prasad",2,49);
+                document.getElementById("output").innerHTML = student1.getDetails()+ "<br>Grade: "+student1.getGrade()+"<br><br>"+ student2.getDetails()+ "<br>Grade: "+student2.getGrade();
+
+                }
+
+        </script>
+    </body>
+    </html>

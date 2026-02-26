@@ -1,0 +1,79 @@
+<!-- Problem 3 — Polymorphism & Method Overriding
+Problem: Create a payment system demonstrating polymorphism.
+Requirements:
+	•	Create a base class Payment
+	•	method pay(amount) → prints "Processing payment"
+	•	Create subclasses:
+	•	CreditCardPayment
+	•	UPIPayment
+	•	CashPayment
+Each class should override pay() method and display different messages.
+Example:
+	•	Credit Card → "Paid ₹500 using Credit Card"
+	•	UPI → "Paid ₹500 using UPI"
+Expected Task:
+	•	Create objects of all payment types.
+	•	Call the pay() method for each. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Polymorphism Example</title>
+</head>
+<body>
+
+<h2>Payment System using Polymorphism</h2>
+<hr>
+
+<button onclick="processPayments()">Process Payments</button>
+
+<p id="output"></p>
+
+<script>
+
+
+class Payment{
+    pay(amount){
+        return "Processing payment of ₹" + amount;
+    }
+}
+
+class CreditCardPayment extends Payment{
+
+    // override pay method
+    pay(amount){
+        return "Paid ₹" + amount + " using Credit Card";
+    }
+}
+
+
+class UPIPayment extends Payment{
+    pay(amount){
+        return "Paid ₹" + amount + " using UPI";
+    }
+}
+
+class CashPayment extends Payment{
+    pay(amount){
+        return "Paid ₹" + amount + " using Cash";
+    }
+}
+
+
+function processPayments(){
+
+    // creating new objects
+    let payment1 = new CreditCardPayment();
+    let payment2 = new UPIPayment();
+    let payment3 = new CashPayment();
+
+    let result =payment1.pay(500) + "<br>" +payment2.pay(500) + "<br>" +payment3.pay(500);
+    document.getElementById("output").innerHTML = result;
+}
+
+</script>
+
+</body>
+</html>

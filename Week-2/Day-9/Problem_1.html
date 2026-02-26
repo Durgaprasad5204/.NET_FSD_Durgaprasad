@@ -1,0 +1,205 @@
+<!-- Level-1 Problem 1: Responsive Personal Portfolio Homepage
+
+Scenario:
+You are designing a responsive personal portfolio homepage for a fresher web developer who wants to showcase profile information, skills, and contact details.
+
+📌 Requirements
+- Integrate Bootstrap 5 using CDN.
+- Create a responsive layout using container, rows, and columns.
+- Use Bootstrap grid system with appropriate breakpoints.
+- Include components such as navbar, cards (for skills), and buttons.
+- Use utility classes for spacing, alignment, and colors.
+
+🛠️ Technical Constraints
+- Must use Bootstrap 5 CDN (no local files).
+- No custom CSS except minimal styling if required.
+- Use grid system (row and col classes) properly.
+- Ensure responsiveness across mobile, tablet, and desktop.
+
+Expectations:
+- Clean UI with proper alignment.
+- Proper use of breakpoints (sm, md, lg).
+- Navbar collapses properly on small screens.
+- Cards are evenly spaced.
+
+🎯 Learning Outcome
+- Understand Bootstrap setup using CDN.
+- Learn responsive grid system and breakpoints.
+- Implement basic Bootstrap components.
+- Apply utility classes effectively.
+ -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Personal Portfolio</title>
+
+    <!-- Bootstrap 5 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body>
+
+<!-- Navbar start -->
+<nav class="navbar navbar-dark bg-black">
+    <div class="container">
+
+        <!-- Website name -->
+        <a class="navbar-brand">My Portfolio</a>
+
+        <!-- Mobile toggle button -->
+        <button class="navbar-toggler" type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Navbar links -->
+        <div class="collapse navbar-collapse" id="menu">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" >Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" >Skills</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+
+<!-- Profile section start -->
+<div class="container mt-4">
+    <div class="row align-items-center">
+        <!-- Profile image -->
+        <div class="col-sm-3 col-md-4 text-center">
+          <img src="Images/photo.png" class="img-fluid rounded-circle border w-50" alt="Profile Image">      
+        </div>
+
+        <!-- Profile details -->
+        <div class="col-sm-12 col-md-8">
+            <h1 class="text">Durgaprasad</h1>
+            <p class="lead">
+                Fresher Web Developer skilled in HTML, CSS, JavaScript, Bootstrap, and .NET.
+                Passionate about building responsive and user-friendly websites.
+            </p>
+            <button class="btn btn-primary me-2">Hire Me</button>
+            <button class="btn btn-outline-dark">Download Resume</button>
+        </div>
+    </div>
+</div>
+
+
+ <!-- Skills section start  -->
+<div class="container mt-4">
+    <h2 class="text-center mb-4">My Skills</h2>
+    <div class="row">
+
+        <!-- Skill 1 -->
+        <div class="col-sm-12 col-md-6 col-lg-4 mb-3">
+            <div class="card text-center h-100">
+                <div class="card-body" >
+                    <h4 class="card-title">HTML</h4>
+                    <p class="card-text">
+                        Creating structured and semantic web pages.
+                    </p>
+                    <button class="btn btn-success">Learn More</button>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Skill 2 -->
+        <div class="col-sm-12 col-md-6 col-lg-4 mb-3">
+            <div class="card text-center h-100">
+                <div class="card-body">
+                    <h4 class="card-title">CSS</h4>
+                    <p class="card-text">
+                        Styling responsive and attractive websites.
+                    </p>
+                    <button class="btn btn-success">Learn More</button>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Skill 3 -->
+        <div class="col-sm-12 col-md-6 col-lg-4 mb-3">
+            <div class="card text-center h-100">
+                <div class="card-body">
+                    <h4 class="card-title">JavaScript</h4>
+                    <p class="card-text">
+                        Making websites interactive and dynamic.
+                    </p>
+                    <button class="btn btn-success">Learn More</button>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Skill 4 -->
+        <div class="col-sm-12 col-md-6 col-lg-4 mb-3">
+            <div class="card text-center h-100">
+                <div class="card-body">
+                    <h4 class="card-title">Bootstrap</h4>
+                    <p class="card-text">
+                        Building responsive layouts quickly.
+                    </p>
+                    <button class="btn btn-success">Learn More</button>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Skill 5 -->
+        <div class="col-sm-12 col-md-6 col-lg-4 mb-3">
+            <div class="card text-center h-100">
+                <div class="card-body">
+                    <h4 class="card-title">.NET</h4>
+                    <p class="card-text">
+                        Developing backend web applications.
+                    </p>
+                    <button class="btn btn-success">Learn More</button>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Skill 6 -->
+        <div class="col-sm-12 col-md-6 col-lg-4 mb-3">
+            <div class="card text-center h-100">
+                <div class="card-body">
+                    <h4 class="card-title">SQL</h4>
+                    <p class="card-text">
+                        Managing and querying databases.
+                    </p>
+                    <button class="btn btn-success">Learn More</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Contact section start -->
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <div class="col-12 text-center">
+            <h2>Contact Me</h2>
+            <p>Email: manukondadurgaprasadofficial@gmail.com</p>
+            <button class="btn btn-primary">Email</button>
+            <button class="btn btn-dark">LinkedIn</button>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
