@@ -1,0 +1,259 @@
+<!-- <!-- Level-2 Problem 4: E-Commerce Landing Page with Advanced Features
+Scenario:
+Build a professional e-commerce landing page with hero section, product carousel, offcanvas menu, and themed design.
+📌 Requirements
+- Use responsive navbar with offcanvas menu.
+- Implement Bootstrap Carousel for featured products.
+- Create multiple sections using grid system.
+- Use forms for newsletter subscription.
+- Apply Bootstrap utilities for display control and alignment.
+- Customize theme using Bootstrap variables or custom overrides.
+🛠️ Technical Constraints
+- Bootstrap 5 CDN required.
+- Proper responsive behavior implementation.
+- Offcanvas and Carousel must function correctly.
+- Maintain consistent color theme.
+Expectations:
+- Professional UI design.
+- Smooth functioning carousel and offcanvas menu.
+- Responsive layout for all devices.
+
+🎯 Learning Outcome
+- Implement advanced Bootstrap components.
+- Understand responsive behavior and display utilities.
+- Apply custom theming concepts.
+
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ShopEase | Premium E-Commerce</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        /* Custom Theme Overrides */
+        :root {
+            --brand-purple: #4b0082;
+            --brand-coral: #ff6f61;
+        }
+
+        .bg-primary { background-color: var(--brand-purple) !important; }
+        .btn-primary { background-color: var(--brand-purple); border-color: var(--brand-purple); }
+        .btn-secondary { background-color: var(--brand-coral); border-color: var(--brand-coral); color: white; }
+        .btn-secondary:hover { background-color: #e55a4f; color: white; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section Styling */
+        .hero {
+            background: linear-gradient(135deg, var(--brand-purple) 0%, #2a004a 100%);
+            color: white;
+            padding: 120px 0;
+            clip-path: ellipse(150% 100% at 50% 0%); /* Subtle curve effect */
+        }
+
+        /* Carousel Image Handling */
+        .carousel-item img {
+            height: 500px;
+            object-fit: cover;
+            filter: brightness(100%);
+        }
+
+        .section-padding {
+            padding: 80px 0;
+        }
+
+        .product-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+        }
+
+        footer {
+            background-color: #1a1a1a;
+            color: #aaa;
+            padding: 40px 0;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-dark bg-primary fixed-top shadow">
+  <div class="container">
+    <a class="navbar-brand fw-bold fs-3" href="#">ShopEase</a>
+    
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasNavbar">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title">Explore ShopEase</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+      </div>
+      <div class="offcanvas-body">
+        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+          <li class="nav-item mb-2"><a class="nav-link active" href="#">Home</a></li>
+          <li class="nav-item mb-2"><a class="nav-link" href="#">New Arrivals</a></li>
+          <li class="nav-item mb-2"><a class="nav-link" href="#">Electronics</a></li>
+          <li class="nav-item mb-2"><a class="nav-link" href="#">Fashion</a></li>
+          <hr>
+          <li class="nav-item"><a class="nav-link" href="#">Account Login</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<section class="hero text-center">
+    <div class="container">
+        <h1 class="display-3 fw-bold mb-3">Elevate Your Lifestyle</h1>
+        <p class="lead mb-4 opacity-75">Curated collections from the world's most innovative brands.</p>
+        <div class="d-flex justify-content-center gap-3">
+            <a href="#products" class="btn btn-secondary btn-lg px-5 shadow">Shop Now</a>
+            <button class="btn btn-outline-light btn-lg px-5">View Deals</button>
+        </div>
+    </div>
+</section>
+
+<section class="section-padding bg-light">
+    <div class="container">
+        <div class="row mb-4">
+            <div class="col-12 text-center">
+                <h2 class="fw-bold">Weekly Highlights</h2>
+                <div class="mx-auto bg-secondary" style="height: 3px; width: 60px;"></div>
+            </div>
+        </div>
+
+        <div id="productCarousel" class="carousel slide carousel-fade shadow-lg rounded-4 overflow-hidden" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#productCarousel" data-bs-slide-to="0" class="active"></button>
+                <button type="button" data-bs-target="#productCarousel" data-bs-slide-to="1"></button>
+                <button type="button" data-bs-target="#productCarousel" data-bs-slide-to="2"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="images/shopping-3.jpeg" class="d-block w-100" alt="Tech">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h3 class="display-6 fw-bold">Gaming Revolution</h3>
+                        <p>Experience ultra-performance with our latest desktop range.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="https://picsum.photos/id/48/1200/500" class="d-block w-100" alt="Audio">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h3 class="display-6 fw-bold">Wide Range Of MAC's</h3>
+                        <p>Feel free to carry anywhere you go</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="https://picsum.photos/id/160/1200/500" class="d-block w-100" alt="Lifestyle">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h3 class="display-6 fw-bold">Modern Essentials</h3>
+                        <p>Smart tech for the contemporary home.</p>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+        </div>
+    </div>
+</section>
+
+<section id="products" class="section-padding">
+    <div class="container">
+        <h2 class="text-center fw-bold mb-5">Trending Products</h2>
+        <div class="row g-4">
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="card h-100 border-0 shadow-sm product-card">
+                    <img src="https://picsum.photos/id/1/400/300" class="card-img-top p-2 rounded-4" alt="Product">
+                    <div class="card-body text-center">
+                        <span class="badge bg-light text-dark mb-2 border">Electronics</span>
+                        <h5 class="card-title fw-bold">UltraBook Pro</h5>
+                        <p class="text-secondary mb-3">$1,299.00</p>
+                        <button class="btn btn-primary w-100">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="card h-100 border-0 shadow-sm product-card">
+                    <img src="images/shopping-6.jpeg" class="card-img-top p-2 rounded-4" alt="Product">
+                    <div class="card-body text-center">
+                        <span class="badge bg-light text-dark mb-2 border">Audio</span>
+                        <h5 class="card-title fw-bold">New Samsung S24 Ultra</h5>
+                        <p class="text-secondary mb-3">$249.00</p>
+                        <button class="btn btn-primary w-100">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="card h-100 border-0 shadow-sm product-card">
+                    <img src="https://picsum.photos/id/250/400/300" class="card-img-top p-2 rounded-4" alt="Product">
+                    <div class="card-body text-center">
+                        <span class="badge bg-light text-dark mb-2 border">Camera</span>
+                        <h5 class="card-title fw-bold">Vision DSLR</h5>
+                        <p class="text-secondary mb-3">$899.00</p>
+                        <button class="btn btn-primary w-100">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="card h-100 border-0 shadow-sm product-card">
+                    <img src="images/shopping-7.jpeg" class="card-img-top p-2 rounded-4" alt="Product">
+                    <div class="card-body text-center">
+                        <span class="badge bg-light text-dark mb-2 border">Accessories</span>
+                        <h5 class="card-title fw-bold"> Dell Desktop</h5>
+                        <p class="text-secondary mb-3">$199.00</p>
+                        <button class="btn btn-primary w-100">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-padding bg-primary text-white">
+    <div class="container text-center">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <h3 class="fw-bold mb-3">Don't Miss the Next Drop</h3>
+                <p class="mb-4 opacity-75">Sign up for early access to sales and member-only rewards.</p>
+                <form class="input-group mb-3">
+                    <input type="email" class="form-control form-control-lg border-0" placeholder="Enter your email" required>
+                    <button class="btn btn-secondary px-4 fw-bold" type="submit">Subscribe</button>
+                </form>
+                <small class="opacity-50 text-uppercase">Zero spam, just great deals.</small>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="text-center">
+    <div class="container">
+        <div class="mb-3">
+            <a href="#" class="text-white text-decoration-none mx-2">About</a>
+            <a href="#" class="text-white text-decoration-none mx-2">Support</a>
+            <a href="#" class="text-white text-decoration-none mx-2">Privacy Policy</a>
+        </div>
+        <p class="mb-0 small">&copy; 2026 ShopEase. Crafted for excellence.</p>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
