@@ -1,0 +1,93 @@
+<!-- Problem 3 (Level-2): Product List with Add to Cart Counter
+Scenario:
+An e-commerce website wants to display a list of products. When users click 'Add to Cart', the cart counter at the top should increase dynamically.
+📌 Requirements
+• Display at least 4 products with 'Add to Cart' buttons.
+• Use jQuery to handle button click events.
+• Increase the cart counter dynamically without page refresh.
+• Disable the button once the product is added.
+• Display a small confirmation message beside the product. 
+🛠️ Technical Constraints
+• Use jQuery event delegation if needed.
+• Use .text(), .attr(), and .prop() methods.
+• No backend or database integration. 
+Expectations:
+• Efficient event handling.
+• Proper use of jQuery methods for attribute manipulation.
+• Clean UI updates.
+
+🎯 Learning Outcome
+• Understand advanced DOM manipulation.
+• Use jQuery methods for dynamic content updates.
+• Apply event delegation concepts. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Problem 3</title>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+</head>
+<body>
+
+    <div id="div1">
+
+        <h3>jQuery - Add to Cart Counter</h3>
+        <hr>
+
+        Cart Items: <span id="cartCount">0</span>
+        <br><br>
+
+        <h4>Laptop</h4>
+        <img src="Images/shopping 2.jpeg" width="120"><br>
+        <button class="btn">Add to Cart</button>
+        <span class="msg"></span>
+
+        <br><br>
+
+        <h4>Headphones</h4>
+        <img src="Images/shopping.jpeg" width="120"><br>
+        <button class="btn">Add to Cart</button>
+        <span class="msg"></span>
+
+        <br><br>
+
+        <h4>Watch</h4>
+        <img src="Images/shopping 5.32.28 PM.jpeg" width="120"><br>
+        <button class="btn">Add to Cart</button>
+        <span class="msg"></span>
+
+        <br><br>
+
+        <h4>Iphone </h4>
+        <img src="Images/shopping-2.jpeg" width="120"><br>
+        <button class="btn">Add to Cart</button>
+        <span class="msg"></span>
+
+    </div>
+
+
+    <script>
+
+        $(document).ready(function () {
+
+            let count = 0;
+
+            $(".btn").click(function () {
+
+                count++;
+
+                $("#cartCount").text(count);
+
+                $(this).prop("disabled", true);
+                $(this).next().text(" Added");
+
+            });
+
+        });
+
+    </script>
+
+</body>
+</html>

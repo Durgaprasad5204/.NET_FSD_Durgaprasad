@@ -1,0 +1,100 @@
+<!-- roblem 4 (Level-2): Interactive To-Do List Application
+Scenario:
+A productivity web app requires a dynamic To-Do List where users can add, mark as complete, and remove tasks using jQuery. 
+📌 Requirements 
+• Provide an input field and Add button to insert tasks.
+• Display tasks dynamically in a list.
+• Allow users to mark tasks as completed (strike-through effect).
+• Provide a delete button for each task.
+• Display total task count and completed task count dynamically. 
+🛠️ Technical Constraints
+• Use jQuery for all DOM manipulation and event handling.
+• Use append(), remove(), toggleClass(), and on() methods.
+• No external libraries except jQuery.
+
+Expectations:
+• Proper dynamic element handling.
+• Efficient event binding for dynamically created elements.
+• Responsive and interactive UI behavior. 
+🎯 Learning Outcome
+• Master jQuery DOM manipulation.
+• Implement dynamic event handling.
+• Build a small interactive application using jQuery. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .done {
+            text-decoration: line-through;
+            color: red;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+</head>
+
+<body>
+
+<h3>jQuery - Simple To-Do List</h3>
+<hr>
+
+Enter Task:
+<input type="text" id="task">
+<button id="add">Add</button>
+
+<br><br>
+
+Total: <span id="total">0</span> 
+Completed: <span id="completed">0</span>
+
+<br><br>
+
+<ul id="list"></ul>
+
+
+<script>
+
+$(document).ready(function () {
+
+    function updateCount() {
+        $("#total").text($("#list li").length);
+        $("#completed").text($("#list li.done").length);
+    }
+
+    // Add Task
+    $("#add").click(function () {
+
+        let value = $("#task").val();
+        if (value != "") {$("#list").append("<li>" +
+                value +
+                " <button class='complete'>Done</button>" +
+                " <button class='delete'>Delete</button>" +
+                "</li>"
+            );
+
+            $("#task").val("");
+            updateCount();
+        }
+    });
+
+    // Mark Complete
+    $("#list").on("click", ".complete", function(){
+        $(this).parent().toggleClass("done");
+        updateCount();
+    });
+
+    // Delete Task
+    $("#list").on("click", ".delete", function(){
+        $(this).parent().remove();
+        updateCount();
+    });
+
+});
+
+</script>
+
+</body>
+</html>

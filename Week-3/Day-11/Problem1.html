@@ -1,0 +1,96 @@
+<!-- Problem 1 (Level-1): Student Feedback Form Interaction
+Scenario:
+A training institute wants to collect feedback from students through a simple web form. They want to enhance user experience using jQuery to validate inputs and display messages dynamically without reloading the page.
+📌 Requirements
+• Create a feedback form with fields: Name, Email, Course Rating (dropdown), and Comments.
+• Use jQuery selectors to capture form inputs.
+• On clicking the Submit button, validate that Name and Email are not empty.
+• Display a success message dynamically below the form using jQuery DOM manipulation.
+• Clear the form fields after successful submission.
+
+🛠️ Technical Constraints
+• Use jQuery CDN for integration.
+• Use basic jQuery syntax: $(selector).action().
+• Do not use plain JavaScript for validation (only jQuery methods).
+• No backend integration required.
+
+Expectations:
+• Proper use of jQuery selectors and event handling.
+• Clean and readable code structure.
+• Validation messages should be user-friendly.
+Learning Outcome:
+• Understand jQuery syntax and selectors.
+• Learn basic DOM manipulation using jQuery.
+• Handle click events effectively. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Problem 1</title>
+    <script src="https://code.jquery.com/jquery-4.0.0.js"></script>
+</head>
+<body>
+
+    <h3>Student Feedback Form</h3>
+
+    Name:
+    <input type="text" id="name">
+    <br><br>
+
+    Email:
+    <input type="email" id="email">
+    <br><br>
+
+    Course Rating:
+    <select id="rating">
+        <option value="">Select Rating</option>
+        <option>Excellent</option>
+        <option>Good</option>
+        <option>Average</option>
+        <option>Below Average</option>
+    </select>
+    <br><br>
+
+    Comments:
+    <input type="textarea" id="comments">
+    <br><br>
+
+    <button id="submit">Submit</button>
+
+    <p id="message"></p>
+
+    <script>
+        $(document).ready(function(){
+
+            $("#submit").click(function(){
+                let name = $("#name").val().trim();
+                let email = $("#email").val().trim();
+
+                if(name === ""){
+                    $("#message").text("Name is required")
+                                 .css("color","red");
+                    return;
+                }
+                if(email === ""){
+                    $("#message").text("Email is required")
+                                 .css("color","red");
+                    return;
+                }
+
+                $("#message").text("Thank you for your feedback, " + name + "!")
+                             .css("color","green");
+
+                // Clear form fields
+                $("#name").val("");
+                $("#email").val("");
+                $("#rating").val("");
+                $("#comments").val("");
+            });
+
+        });
+    </script>
+
+</body>
+</html>

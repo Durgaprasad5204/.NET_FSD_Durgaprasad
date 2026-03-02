@@ -1,0 +1,75 @@
+<!-- Simple math operation using +,-,*,/ in jquery -->
+ 
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mathematical Operations - jQuery</title>
+</head>
+
+<body>
+
+<h1>jQuery Programming</h1>
+<hr />
+
+Enter first number:
+<input type="text" class="c2" id="t1" value="" />
+<br><br>
+
+Enter second number:
+<input type="text" class="c2" id="t2" value="" />
+<br><br>
+
+<input type="button" class="c1" value="+" />
+<input type="button" class="c1" value="-" />
+<input type="button" class="c1" value="*" />
+<input type="button" class="c1" value="/" />
+
+<br><hr />
+
+<p id="p1"></p>
+
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+
+<script>
+
+    $(document).ready(function () {
+
+        $(".c1").click(function () {
+
+            // Get values from input boxes
+            let n1 = Number($("#t1").val());
+            let n2 = Number($("#t2").val());
+
+            // Get operator from button
+            let operator = $(this).val();
+
+            let result;
+
+            if (operator == "+") {
+                result = n1 + n2;
+            }
+            else if (operator == "-") {
+                result = n1 - n2;
+            }
+            else if (operator == "*") {
+                result = n1 * n2;
+            }
+            else if (operator == "/") {
+                if (n2 == 0) {
+                    result = "Cannot divide by zero";
+                } else {
+                    result = n1 / n2;
+                }
+            }
+
+            // Display result
+            $("#p1").text("Result = " + result);
+
+        });
+
+    });
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!-- Problem 2 (Level-1): Dynamic FAQ Toggle Section
+Scenario:
+A website contains a Frequently Asked Questions (FAQ) section. The company wants answers to appear and disappear when users click on the questions.
+📌 Requirements
+• Create at least 5 FAQ questions with hidden answers.
+• Use jQuery click() event to toggle answers.
+• Apply slideToggle() or show()/hide() methods.
+• Highlight the selected question using CSS class manipulation.
+
+🛠️ Technical Constraints
+• Use only jQuery methods for DOM manipulation.
+• Use class selectors and ID selectors appropriately.
+• Avoid inline JavaScript.
+
+Expectations:
+• Smooth UI interaction.
+• Proper use of jQuery effects.
+• Organized HTML structure.
+
+🎯 Learning Outcome
+• Implement event handling using jQuery.
+• Use basic jQuery effects.
+• Practice DOM traversal and manipulation. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Problem-2</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+
+    <style>
+        .question {
+            background-color: #f2f2f2;
+            padding: 10px;
+            margin-top: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+<h3>Dynamic FAQ Toggle Section</h3>
+<hr>
+
+<div class="container">
+
+    <div class="question">
+        What Are Frequently Asked Questions?
+    </div>
+    <div class="answer">
+        Frequently asked questions (FAQ) are common questions repeatedly asked about a topic.
+    </div>
+
+    <div class="question">
+        How to Create Good FAQ Questions?
+    </div>
+    <div class="answer">
+        Identify common user doubts and provide clear answers.
+    </div>
+
+    <div class="question">
+        What is List of Most Common FAQs for Websites?
+    </div>
+    <div class="answer">
+        <ul>
+            <li>What are you selling?</li>
+            <li>What does the guarantee cover?</li>
+            <li>Where can I find you?</li>
+            <li>How might I contact you?</li>
+        </ul>
+    </div>
+
+    <div class="question">
+        How to Measure FAQ Effectiveness?
+    </div>
+    <div class="answer">
+        Track visits, reading time, and engagement metrics.
+    </div>
+
+    <div class="question">
+        Why does Fashion Industry need FAQ's?
+    </div>
+    <div class="answer">
+        It improves clarity, builds trust, and enhances customer experience.
+    </div>
+
+</div>
+
+<script>
+    $(document).ready(function(){
+
+        $(".question").click(function(){
+            $(".answer").hide();                   // hide all answers
+            $(this).next(".answer").slideToggle(1000);  // show clicked answer
+            
+
+        });
+
+    });
+</script>
+</body>
+</html>
