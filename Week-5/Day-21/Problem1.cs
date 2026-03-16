@@ -1,0 +1,118 @@
+﻿
+
+//DAY - 1 Hands - On
+//Level - 1 Problem 1: Bank Account Management System
+//Scenario:
+//A bank wants to develop a simple console-based application to manage customer bank accounts. The system should protect account balance information and allow controlled access using properties.
+//Requirements:
+//1.Create a BankAccount class with private fields for account number and balance.
+//2.Use properties to allow controlled access to account number and balance.
+//3.Implement Deposit and Withdraw methods with proper validation.
+//4.Prevent withdrawal if balance is insufficient.
+//Technical Constraints:
+//• Use private fields with public properties.
+//• Apply encapsulation and data hiding.
+//• No direct access to balance field from outside the class.
+//Expectations:
+//• Demonstrate correct use of access modifiers.
+//• Validate negative deposit or withdrawal amounts.
+//• Display updated balance after each transaction.
+//Learning Outcome:
+//• Understand encapsulation using properties.
+//• Apply data hiding effectively.
+//• Implement validation logic inside class methods.
+//Sample Input: 
+//Deposit = 5000, Withdraw = 2000
+//Sample Output: 
+//Current Balance = 3000
+
+
+
+using System;
+
+namespace ConsoleApp1
+{
+    class BankAccount
+    {
+        // Private fields
+        private string accountNumber;
+        private double balance;
+
+        // Property for Account Number (Read Only)
+        public string AccountNumber
+        {
+            get { return accountNumber; }
+        }
+
+        // Property for Balance (Read Only Outside)
+        public double Balance
+        {
+            get { return balance; }
+        }
+
+        // Constructor
+        public BankAccount(string accNo, double initialBalance)
+        {
+            accountNumber = accNo;
+            balance = initialBalance;
+        }
+
+        // Deposit Method
+        public void Deposit(double amount)
+        {
+            if (amount <= 0)
+            {
+                Console.WriteLine("Invalid Deposit Amount");
+                return;
+            }
+
+            balance = balance + amount;
+            Console.WriteLine("Amount Deposited Successfully");
+            Console.WriteLine("Current Balance = " + balance);
+        }
+
+        // Withdraw Method
+        public void Withdraw(double amount)
+        {
+            if (amount <= 0)
+            {
+                Console.WriteLine("Invalid Withdraw Amount");
+                return;
+            }
+
+            if (amount > balance)
+            {
+                Console.WriteLine("Insufficient Balance");
+                return;
+            }
+
+            balance = balance - amount;
+            Console.WriteLine("Amount Withdrawn Successfully");
+            Console.WriteLine("Current Balance = " + balance);
+        }
+    }
+
+//    class Program
+//    {
+//        static void Main(string[] args)
+//        {
+//            Console.Write("Enter Account Number: ");
+//            string accNo = Console.ReadLine();
+
+//            Console.Write("Enter Initial Balance: ");
+//            double bal = double.Parse(Console.ReadLine());
+
+//            BankAccount acc = new BankAccount(accNo, bal);
+
+//            Console.Write("Enter Deposit Amount: ");
+//            double dep = double.Parse(Console.ReadLine());
+//            acc.Deposit(dep);
+
+//            Console.Write("Enter Withdraw Amount: ");
+//            double wd = double.Parse(Console.ReadLine());
+//            acc.Withdraw(wd);
+
+//            Console.ReadLine();
+//        }
+//    }
+//}
