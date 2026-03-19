@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopEZ - Home</title>
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">ShopEZ</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="products.html">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cart.html">
+                            <i class="fas fa-shopping-cart"></i>
+                            Cart <span class="cart-count">0</span>
+                        </a>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search" action="products.html">
+                    <input class="form-control me-2" type="search" placeholder="Search products..." name="search">
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Notification Area -->
+    <div class="container mt-3" id="notificationArea"></div>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="bg-primary text-white text-center py-5">
+            <div class="container">
+                <h1 class="display-4">Welcome to ShopEZ</h1>
+                <p class="lead">Your one-stop shop for all your needs</p>
+                <a href="products.html" class="btn btn-light btn-lg">Shop Now</a>
+            </div>
+        </section>
+
+        <!-- Featured Products -->
+        <section class="py-5">
+            <div class="container">
+                <h2 class="text-center mb-4">Featured Products</h2>
+                <div class="row" id="featuredProducts">
+                    <!-- Products loaded via JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories -->
+        <section class="bg-light py-5">
+            <div class="container">
+                <h2 class="text-center mb-4">Shop by Category</h2>
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <div class="card text-center h-100">
+                            <div class="card-body">
+                                <i class="fas fa-laptop fa-3x mb-3 text-primary"></i>
+                                <h5 class="card-title">Electronics</h5>
+                                <p class="card-text">Latest gadgets and electronics</p>
+                                <a href="products.html?category=electronics" class="btn btn-outline-primary">Browse</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="card text-center h-100">
+                            <div class="card-body">
+                                <i class="fas fa-headphones fa-3x mb-3 text-success"></i>
+                                <h5 class="card-title">Accessories</h5>
+                                <p class="card-text">Premium accessories and add-ons</p>
+                                <a href="products.html?category=accessories" class="btn btn-outline-success">Browse</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="card text-center h-100">
+                            <div class="card-body">
+                                <i class="fas fa-clock fa-3x mb-3 text-warning"></i>
+                                <h5 class="card-title">Coming Soon</h5>
+                                <p class="card-text">New products arriving soon</p>
+                                <a href="products.html" class="btn btn-outline-warning">Browse All</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container text-center">
+            <p>&copy; 2026 ShopEZ. All rights reserved.</p>
+            <p> Durgaprasad Manukonda</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="lib/jquery/jquery.min.js"></script>
+    <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/products.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Load featured products
+            getAllProducts(function(products) {
+                const featured = products.slice(0, 3);
+                const container = $('#featuredProducts');
+                
+                featured.forEach(product => {
+                    container.append(createProductCard(product));
+                });
+                
+                // Add event handlers
+                $('.view-details').click(function() {
+                    window.location.href = `product-details.html?id=${$(this).data('id')}`;
+                });
+                
+                $('.add-to-cart').click(function() {
+                    addToCart($(this).data('id'));
+                });
+            });
+        });
+    </script>
+</body>
+</html>

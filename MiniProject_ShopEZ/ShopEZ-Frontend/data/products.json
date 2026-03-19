@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "name": "Laptop",
+    "description": "High performance laptop with 16GB RAM and 512GB SSD. Perfect for professionals and gamers.",
+    "price": 60000,
+    "image": "Images/laptop.jpg",
+    "category": "electronics",
+    "specs": ["16GB RAM", "512GB SSD", "Intel i7 Processor", "Windows 11", "Backlit Keyboard"]
+  },
+  {
+    "id": 2,
+    "name": "Smartphone",
+    "description": "Latest smartphone with 5G connectivity and 108MP camera. 8GB RAM, 128GB storage.",
+    "price": 25000,
+    "image": "Images/smartphone.jpg",
+    "category": "electronics",
+    "specs": ["6.5 inch Display", "108MP Camera", "5000mAh Battery", "5G Support", "128GB Storage"]
+  },
+  {
+    "id": 3,
+    "name": "Headphones",
+    "description": "Wireless noise-cancelling headphones with 30-hour battery life. Premium sound quality.",
+    "price": 3000,
+    "image": "Images/headphones.jpg",
+    "category": "accessories",
+    "specs": ["Bluetooth 5.0", "Noise Cancelling", "30hr Battery", "Fast Charging", "Comfort Fit"]
+  },
+  {
+    "id": 4,
+    "name": "Tablet",
+    "description": "10.5 inch tablet with stylus support. Perfect for note-taking and entertainment.",
+    "price": 18000,
+    "image": "Images/tablet.jpg",
+    "category": "electronics",
+    "specs": ["10.5 inch Display", "Stylus Support", "128GB Storage", "4GB RAM", "Long Battery Life"]
+  },
+  {
+    "id": 5,
+    "name": "Nikon Camera",
+    "description": "DSLR camera with 24.1MP sensor and 4K video recording. Includes kit lens.",
+    "price": 45000,
+    "image": "Images/camera.jpg",
+    "category": "electronics",
+    "specs": ["24.1MP Sensor", "4K Video", "Interchangeable Lens", "WiFi Connectivity", "3 inch LCD"]
+  },
+  {
+    "id": 6,
+    "name": "Smart Watch",
+    "description": "Fitness tracker with heart rate monitor and GPS. Water resistant up to 50m.",
+    "price": 8000,
+    "image": "Images/smartwatch.jpg",
+    "category": "accessories",
+    "specs": ["Heart Rate Monitor", "GPS", "5 Day Battery", "Water Resistant", "Sleep Tracking"]
+  }
+]

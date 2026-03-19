@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopEZ - Checkout</title>
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">ShopEZ</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="products.html">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cart.html">
+                            <i class="fas fa-shopping-cart"></i>
+                            Cart <span class="cart-count">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Notification Area -->
+    <div class="container mt-3" id="notificationArea"></div>
+
+    <!-- Main Content -->
+    <main class="container py-4">
+        <h1 class="mb-4">Checkout</h1>
+        
+        <div class="row">
+            <!-- Checkout Form -->
+            <div class="col-md-8">
+                <form id="checkoutForm">
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <h5 class="mb-0">Shipping Information</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="fullName" class="form-label">Full Name *</label>
+                                    <input type="text" class="form-control" id="fullName" required>
+                                    <div class="invalid-feedback">Please enter your full name.</div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="email" class="form-label">Email *</label>
+                                    <input type="email" class="form-control" id="email" required>
+                                    <div class="invalid-feedback">Please enter a valid email address.</div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="phone" class="form-label">Phone Number *</label>
+                                <input type="tel" class="form-control" id="phone" pattern="[0-9]{10}" required>
+                                <div class="invalid-feedback">Please enter a valid 10-digit phone number.</div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="address" class="form-label">Address *</label>
+                                <textarea class="form-control" id="address" rows="2" required></textarea>
+                                <div class="invalid-feedback">Please enter your address.</div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <label for="city" class="form-label">City *</label>
+                                    <input type="text" class="form-control" id="city" required>
+                                    <div class="invalid-feedback">Please enter your city.</div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="state" class="form-label">State *</label>
+                                    <input type="text" class="form-control" id="state" required>
+                                    <div class="invalid-feedback">Please enter your state.</div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="pincode" class="form-label">Pincode *</label>
+                                    <input type="text" class="form-control" id="pincode" pattern="[0-9]{6}" required>
+                                    <div class="invalid-feedback">Please enter a valid 6-digit pincode.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <h5 class="mb-0">Payment Method</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" name="paymentMethod" id="paymentCard" value="card" checked>
+                                <label class="form-check-label" for="paymentCard">
+                                    Credit/Debit Card
+                                </label>
+                            </div>
+                            
+                            <div id="cardDetails">
+                                <div class="mb-3">
+                                    <label for="cardNumber" class="form-label">Card Number</label>
+                                    <input type="text" class="form-control" id="cardNumber" placeholder="1234 5678 9012 3456">
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="cardName" class="form-label">Name on Card</label>
+                                        <input type="text" class="form-control" id="cardName">
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="expiry" class="form-label">Expiry</label>
+                                        <input type="text" class="form-control" id="expiry" placeholder="MM/YY">
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="cvv" class="form-label">CVV</label>
+                                        <input type="text" class="form-control" id="cvv" placeholder="123">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" name="paymentMethod" id="paymentUPI" value="upi">
+                                <label class="form-check-label" for="paymentUPI">
+                                    UPI
+                                </label>
+                            </div>
+                            
+                            <div id="upiDetails" style="display: none;">
+                                <div class="mb-3">
+                                    <label for="upiId" class="form-label">UPI ID</label>
+                                    <input type="text" class="form-control" id="upiId" placeholder="username@bank">
+                                </div>
+                            </div>
+                            
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="paymentMethod" id="paymentCOD" value="cod">
+                                <label class="form-check-label" for="paymentCOD">
+                                    Cash on Delivery
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-success btn-lg w-100">
+                        Place Order <i class="fas fa-check"></i>
+                    </button>
+                </form>
+            </div>
+            
+            <!-- Order Summary -->
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">Order Summary</h5>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-sm">
+                            <tbody id="orderItems">
+                                <!-- Order items loaded via JavaScript -->
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td>Subtotal:</td>
+                                    <td class="text-end" id="orderSubtotal">₹0</td>
+                                </tr>
+                                <tr>
+                                    <td>Shipping:</td>
+                                    <td class="text-end" id="orderShipping">₹50</td>
+                                </tr>
+                                <tr>
+                                    <td>Tax (18% GST):</td>
+                                    <td class="text-end" id="orderTax">₹0</td>
+                                </tr>
+                                <tr class="fw-bold">
+                                    <td>Total:</td>
+                                    <td class="text-end" id="orderTotal">₹0</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container text-center">
+            <p>&copy; 2026 ShopEZ. All rights reserved.</p>
+            <p> Durgaprasad Manukonda</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="lib/jquery/jquery.min.js"></script>
+    <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/checkout.js"></script>
+</body>
+</html>
