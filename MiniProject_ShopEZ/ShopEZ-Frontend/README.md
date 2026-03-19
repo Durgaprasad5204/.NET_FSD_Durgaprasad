@@ -33,27 +33,15 @@ A simple e-commerce frontend prototype built with HTML, CSS, JavaScript, jQuery,
 
 ## Project Structure
 
-ShopEZ-Frontend/
-├── index.html
-├── products.html
-├── product-details.html
-├── cart.html
-├── checkout.html
-├── css/
-│ └── styles.css
-├── js/
-│ ├── common.js
-│ ├── products.js
-│ ├── cart.js
-│ ├── checkout.js
-│ └── product-details.js
-├── data/
-│ └── products.json
-├── images/
-│
-└── lib/
-├── bootstrap/
-└── jquery/
+- `index.html` - Home page
+- `products.html` - All products
+- `cart.html` - Shopping cart
+- `checkout.html` - Checkout page
+- `css/` - Stylesheets
+- `js/` - JavaScript files
+- `data/` - Product data (JSON)
+- `images/` - Product images
+- `lib/` - Bootstrap and jQuery files
 
 
 ## Screenshots
