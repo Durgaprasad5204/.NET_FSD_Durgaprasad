@@ -1,0 +1,46 @@
+﻿﻿@using WebApplication1.Models
+@model List<Product>
+
+<h1 class="display-5">Product Controller - Index</h1>
+
+<a class="btn btn-primary" asp-action="Create">Create New</a>
+<hr />
+
+<table border="1" cellpadding="10" cellspacing="0" class="table">
+    <thead>
+        <tr>
+            <th>Id </th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Category</th>
+            <th>Operations</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td>@item.Price</td>
+                <td>@item.Category</td>
+                
+                <td>
+                    <a asp-controller="Product"
+                       asp-action="Details"
+                       asp-route-id="@item.Id">Details</a> |
+
+                    <a asp-controller="Product"
+                       asp-action="Edit"
+                       asp-route-id="@item.Id">Edit</a>  |
+
+                    <a asp-controller="Product"
+                       asp-action="Delete"
+                       asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
