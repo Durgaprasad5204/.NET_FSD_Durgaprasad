@@ -1,0 +1,64 @@
+﻿@using WebApplication1.Models
+@model List<ContactInfo>
+
+<h3> All Contact Details</h3>
+
+<hr />
+
+<a asp-action="AddContact" class="btn btn-primary">Add New Contact</a>
+
+
+<br />
+<table class="table" border="1" cellpadding="10" cellspacing="0">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Company Name</th>
+        <th>Mobile Number</th>
+        <th>Email</th>
+        <th>Designation</th>
+        <th>Actions</th>
+        
+    </tr>
+    </thead>
+
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.ContactId</td>
+            <td>@item.FirstName</td>
+            <td>@item.LastName</td>
+            <td>@item.CompanyName</td>
+            <td>@item.MobileNo</td>
+            <td>@item.EmailId</td>
+            <td>@item.Designation</td>
+            <td>
+                <a asp-controller="Contact" asp-action="Delete" asp-route-id="@item.ContactId">Delete Contact</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<br />
+
+
+
+<form method="get" asp-action="Search">
+    <div class="form-group">
+        <label class="form-label">Contact Id</label>
+        <input type="number" name="ContactId" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label class="form-label">Designation</label>
+        <input type="text" name="Designation" class="form-control" />
+    </div>
+
+    <br />
+    <button type="submit" class="btn btn-success">Search</button>
+</form>
+
