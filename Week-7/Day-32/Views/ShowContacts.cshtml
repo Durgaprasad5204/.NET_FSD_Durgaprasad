@@ -1,0 +1,40 @@
+﻿@model IEnumerable<WebApplication2.Models.ContactInfo>
+
+@{
+    ViewData["Title"] = "Contact List";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1>All Contacts</h1>
+    <a asp-action="AddContact" class="btn btn-primary">Create New Contact</a>
+</div>
+
+<table class="table table-bordered mt-3">
+    <thead >
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Company</th>
+            <th>Email</th>
+            <th>Mobile</th>
+            <th>Designation</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ContactId</td>
+                <td>@item.FirstName @item.LastName</td>
+                <td>@item.CompanyName</td>
+                <td>@item.EmailId</td>
+                <td>@item.MobileNo</td>
+                <td>@item.Designation</td>
+                <td>
+                    <a asp-action="GetContactById" asp-route-id="@item.ContactId">Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
