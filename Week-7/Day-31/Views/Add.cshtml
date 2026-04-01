@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Simple Calculator";
+}
+
+<h2>Simple Calculator - Addition</h2>
+
+<form asp-action="Add" method="post">
+    <div class="form-group">
+        <label>Enter First Number</label>
+        <input type="number" name="num1" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label>Enter Second Number</label>
+        <input type="number" name="num2" class="form-control" />
+    </div>
+
+    <br />
+
+    <button type="submit" value="add" class="btn btn-primary">Add</button>
+    
+</form>
+
+<br />
+
+@if (ViewData["Result"] != null)
+{
+    <h3>Result = @ViewData["Result"]</h3>
+}
