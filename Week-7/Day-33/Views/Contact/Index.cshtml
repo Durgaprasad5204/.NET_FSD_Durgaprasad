@@ -1,0 +1,57 @@
+﻿@model IEnumerable<WebApplication3.Models.ContactInfo>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Create New</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ContactId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmailId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MobileNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Designation)
+            </th>
+            <th>
+                Company
+            </th>
+            <th>
+                Department
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.ContactId)</td>
+                <td>@Html.DisplayFor(modelItem => item.FirstName)</td>
+                <td>@Html.DisplayFor(modelItem => item.LastName)</td>
+                <td>@Html.DisplayFor(modelItem => item.EmailId)</td>
+                <td>@Html.DisplayFor(modelItem => item.MobileNo)</td>
+                <td>@Html.DisplayFor(modelItem => item.Designation)</td>
+                <td>@Html.DisplayFor(modelItem => item.CompanyName)</td>
+                <td>@Html.DisplayFor(modelItem => item.DepartmentName)</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ContactId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.ContactId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ContactId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
