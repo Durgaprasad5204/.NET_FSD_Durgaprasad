@@ -1,0 +1,106 @@
+<main>
+  <!-- Hero Section -->
+  <section class="bg-primary text-white text-center py-5">
+    <div class="container">
+      <h1 class="display-4">Welcome to ShopEZ</h1>
+      <p class="lead">Your one-stop shop for all your needs</p>
+      <a routerLink="/products" class="btn btn-light btn-lg">Shop Now</a>
+    </div>
+  </section>
+
+  <!-- Featured Products -->
+  <section class="py-5">
+    <div class="container">
+      <h2 class="text-center mb-4">Featured Products</h2>
+
+      <div class="row">
+        <div class="col-lg-4 col-md-6 mb-4" *ngFor="let product of featuredProducts">
+          <div class="card product-card h-100">
+
+            <!-- ✅ Image Fix -->
+            <img
+              [src]="getImage(product.imageUrl)"
+              class="card-img-top"
+              [alt]="product.name"
+              (error)="onImageError($event)">
+
+            <div class="card-body">
+              <span class="category-badge">
+                {{ product.category || 'Electronics' }}
+              </span>
+
+              <h5 class="card-title">{{ product.name }}</h5>
+
+              <p class="card-text">
+                {{ product.description | slice:0:100 }}...
+              </p>
+
+              <p class="product-price">
+                {{ formatPrice(product.price) }}
+              </p>
+
+              <div class="d-flex justify-content-between">
+                <a
+                  [routerLink]="['/product', product.id]"
+                  class="btn btn-outline-primary">
+                  View Details
+                </a>
+
+                <button
+                  class="btn btn-primary"
+                  (click)="addToCart(product)">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Categories -->
+  <section class="bg-light py-5">
+    <div class="container">
+      <h2 class="text-center mb-4">Shop by Category</h2>
+
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <div class="card text-center h-100">
+            <div class="card-body">
+              <i class="fas fa-laptop fa-3x mb-3 text-primary"></i>
+              <h5 class="card-title">Electronics</h5>
+              <p class="card-text">Latest gadgets and electronics</p>
+              <a routerLink="/products" class="btn btn-outline-primary">Browse</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+          <div class="card text-center h-100">
+            <div class="card-body">
+              <i class="fas fa-headphones fa-3x mb-3 text-success"></i>
+              <h5 class="card-title">Accessories</h5>
+              <p class="card-text">Premium accessories and add-ons</p>
+              <a routerLink="/products" class="btn btn-outline-success">Browse</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+          <div class="card text-center h-100">
+            <div class="card-body">
+              <i class="fas fa-clock fa-3x mb-3 text-warning"></i>
+              <h5 class="card-title">Coming Soon</h5>
+              <p class="card-text">New products arriving soon</p>
+              <a routerLink="/products" class="btn btn-outline-warning">Browse All</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</main>

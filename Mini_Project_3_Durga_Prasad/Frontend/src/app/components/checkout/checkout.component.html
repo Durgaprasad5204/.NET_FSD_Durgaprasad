@@ -1,0 +1,130 @@
+<main class="container py-4">
+      <h1 class="mb-4">Checkout</h1>
+      
+      <div class="row">
+        <!-- Checkout Form -->
+        <div class="col-md-8">
+          <form [formGroup]="checkoutForm" (ngSubmit)="placeOrder()">
+            <div class="card mb-3">
+              <div class="card-header">
+                <h5 class="mb-0">Shipping Information</h5>
+              </div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <label for="fullName" class="form-label">Full Name *</label>
+                    <input type="text" class="form-control" id="fullName" formControlName="fullName">
+                    <div class="invalid-feedback" *ngIf="checkoutForm.get('fullName')?.invalid && checkoutForm.get('fullName')?.touched">Please enter your full name.</div>
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <label for="email" class="form-label">Email *</label>
+                    <input type="email" class="form-control" id="email" formControlName="email">
+                    <div class="invalid-feedback">Please enter a valid email address.</div>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label for="phone" class="form-label">Phone Number *</label>
+                  <input type="tel" class="form-control" id="phone" formControlName="phone">
+                  <div class="invalid-feedback">Please enter a valid 10-digit phone number.</div>
+                </div>
+                <div class="mb-3">
+                  <label for="address" class="form-label">Address *</label>
+                  <textarea class="form-control" id="address" rows="2" formControlName="address"></textarea>
+                </div>
+                <div class="row">
+                  <div class="col-md-4 mb-3">
+                    <label for="city" class="form-label">City *</label>
+                    <input type="text" class="form-control" id="city" formControlName="city">
+                  </div>
+                  <div class="col-md-4 mb-3">
+                    <label for="state" class="form-label">State *</label>
+                    <input type="text" class="form-control" id="state" formControlName="state">
+                  </div>
+                  <div class="col-md-4 mb-3">
+                    <label for="pincode" class="form-label">Pincode *</label>
+                    <input type="text" class="form-control" id="pincode" formControlName="pincode">
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="card mb-3">
+              <div class="card-header">
+                <h5 class="mb-0">Payment Method</h5>
+              </div>
+              <div class="card-body">
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="radio" name="paymentMethod" id="paymentCard" value="card" formControlName="paymentMethod">
+                  <label class="form-check-label" for="paymentCard">Credit/Debit Card</label>
+                </div>
+                <div id="cardDetails" *ngIf="checkoutForm.get('paymentMethod')?.value === 'card'">
+                  <div class="mb-3">
+                    <label for="cardNumber" class="form-label">Card Number</label>
+                    <input type="text" class="form-control" id="cardNumber" formControlName="cardNumber">
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 mb-3">
+                      <label for="cardName" class="form-label">Name on Card</label>
+                      <input type="text" class="form-control" id="cardName" formControlName="cardName">
+                    </div>
+                    <div class="col-md-3 mb-3">
+                      <label for="expiry" class="form-label">Expiry</label>
+                      <input type="text" class="form-control" id="expiry" placeholder="MM/YY" formControlName="expiry">
+                    </div>
+                    <div class="col-md-3 mb-3">
+                      <label for="cvv" class="form-label">CVV</label>
+                      <input type="text" class="form-control" id="cvv" placeholder="123" formControlName="cvv">
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="form-check mb-2">
+                  <input class="form-check-input" type="radio" name="paymentMethod" id="paymentUPI" value="upi" formControlName="paymentMethod">
+                  <label class="form-check-label" for="paymentUPI">UPI</label>
+                </div>
+                <div id="upiDetails" *ngIf="checkoutForm.get('paymentMethod')?.value === 'upi'">
+                  <div class="mb-3">
+                    <label for="upiId" class="form-label">UPI ID</label>
+                    <input type="text" class="form-control" id="upiId" placeholder="username@bank" formControlName="upiId">
+                  </div>
+                </div>
+                
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="paymentMethod" id="paymentCOD" value="cod" formControlName="paymentMethod">
+                  <label class="form-check-label" for="paymentCOD">Cash on Delivery</label>
+                </div>
+              </div>
+            </div>
+            
+            <button type="submit" class="btn btn-success btn-lg w-100" [disabled]="checkoutForm.invalid || isProcessing">
+              Place Order <i class="fas fa-check"></i>
+            </button>
+          </form>
+        </div>
+        
+        <!-- Order Summary -->
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="mb-0">Order Summary</h5>
+            </div>
+            <div class="card-body">
+              <table class="table table-sm">
+                <tbody>
+                  <tr *ngFor="let item of cartItems">
+                    <td>{{item.name}} x {{item.quantity}}</td>
+                    <td class="text-end">{{formatPrice(item.price * item.quantity)}}</td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr><td>Subtotal:</td><td class="text-end">{{formatPrice(subtotal)}}</td></tr>
+                  <tr><td>Shipping:</td><td class="text-end">{{formatPrice(shipping)}}</td></tr>
+                  <tr><td>Tax (18% GST):</td><td class="text-end">{{formatPrice(tax)}}</td></tr>
+                  <tr class="fw-bold"><td>Total:</td><td class="text-end">{{formatPrice(total)}}</td></tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>

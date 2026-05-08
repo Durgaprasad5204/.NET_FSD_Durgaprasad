@@ -1,0 +1,63 @@
+<main class="container py-4">
+      <h1 class="mb-4">Shopping Cart</h1>
+      
+      <!-- Empty Cart Message -->
+      <div class="text-center py-5" *ngIf="cartItems.length === 0">
+        <i class="fas fa-shopping-cart fa-4x text-muted mb-3"></i>
+        <h3>Your cart is empty</h3>
+        <p class="text-muted">Looks like you haven't added any items to your cart yet.</p>
+        <a routerLink="/products" class="btn btn-primary">Continue Shopping</a>
+      </div>
+      
+      <!-- Cart Items -->
+      <div class="row" *ngIf="cartItems.length > 0">
+        <div class="col-md-8">
+          <div class="cart-item" *ngFor="let item of cartItems; let i = index">
+            <img [src]="item.imageUrl?.replace('https://localhost:7128https://localhost:7128','https://localhost:7128') || 'https://via.placeholder.com/100x100'" 
+                 [alt]="item.name"
+                 onerror="this.src='https://via.placeholder.com/100x100/6c757d/ffffff?text=No+Image'">
+            <div class="cart-item-details">
+              <h5 class="cart-item-title">{{item.name}}</h5>
+              <p class="cart-item-price">{{formatPrice(item.price)}}</p>
+            </div>
+            <div>
+              <div class="input-group" style="width: 120px;">
+                <button class="btn btn-outline-secondary" (click)="decrease(item)">-</button>
+                <input type="text" class="form-control text-center" [value]="item.quantity" readonly>
+                <button class="btn btn-outline-secondary" (click)="increase(item)">+</button>
+              </div>
+            </div>
+            <div>
+              <p class="cart-item-price">{{formatPrice(item.price * item.quantity)}}</p>
+            </div>
+            <button class="btn btn-link text-danger" (click)="remove(item)">
+              <i class="fas fa-trash"></i>
+            </button>
+          </div>
+        </div>
+        
+        <!-- Cart Summary -->
+        <div class="col-md-4">
+          <div class="cart-summary">
+            <h4>Order Summary</h4>
+            <table class="table table-borderless">
+              <tr><td>Subtotal:</td><td class="text-end">{{formatPrice(subtotal)}}</td></tr>
+              <tr><td>Shipping:</td><td class="text-end">{{formatPrice(shipping)}}</td></tr>
+              <tr><td>Tax (18% GST):</td><td class="text-end">{{formatPrice(tax)}}</td></tr>
+              <tr class="fw-bold"><td>Total:</td><td class="text-end">{{formatPrice(total)}}</td></tr>
+            </table>
+            <div class="d-flex justify-content-between">
+              <button class="btn btn-outline-danger" (click)="clearCart()">
+                <i class="fas fa-trash"></i> Clear Cart
+              </button>
+              <a routerLink="/products" class="btn btn-outline-primary">
+                <i class="fas fa-arrow-left"></i> Continue Shopping
+              </a>
+              <a routerLink="/checkout" class="btn btn-success">
+                Proceed to Checkout <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
